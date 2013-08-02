@@ -1,6 +1,10 @@
 <h1>Photo Bingo</h1>
 
-<%= link_to "New Game", new_game_url %>
-<%= link_to "My Games", games_url %>
-<%= link_to "New Theme", new_theme_url %>
-<%= link_to "My Themes", themes_url %>
+<section>
+  <%= link_to "New Game", new_game_url, class: "left menu-button" %>
+  <%= link_to "My Games", games_url, class: "right menu-button" %>
+</section>
+<section>
+  <%= link_to "New Theme", new_theme_url, class: "left menu-button" %>
+  <%= link_to "My Themes", themes_url, class: "right menu-button" %>
+</section>
