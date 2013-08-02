@@ -6,7 +6,7 @@ PhotoBingo::Application.routes.draw do
   resources :themes, except: :show
   resources :games, except: :edit
   resources :boards, only: [:show, :destroy]
-  resources :photos, only: [:show, :destroy]
+  resources :photos, only: [:show, :destroy, :new, :create]
 
   root :to => 'main#menu'
 

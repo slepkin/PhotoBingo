@@ -1,0 +1,28 @@
+<h1>New Game</h1>
+
+<form action="<%= games_url %>" method="post">
+
+  <label for:"theme">Theme:</label>
+  <select name="game[theme]">
+  <% Theme.all.each do |theme| %>
+    <option value="<%= theme %>" <%= "selected" if @game.theme == theme %> >
+    <%= theme.title %></option>
+  <% end %>
+  </select>
+
+  <link_to "New Theme", <%= new_theme_url %> >
+  <br>
+
+  <h3>Players:</h3><br>
+  <% User.all.each do |user| %>
+  <label for="<%= user.name %>"><%= user.name %></label>
+    <input type="checkbox" name="game[users][]" value="<%= user %>"
+      id="<%= user.name %>">
+  <% end %>
+  <br>
+
+  <%= link_to "Cancel", games_url %>
+
+  <input type="submit" value="Create Game">
+</form>
+
