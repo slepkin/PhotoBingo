@@ -1,0 +1,11 @@
+<h1>My Themes</h1>
+
+<!-- Later, restrict themes to their owners -->
+
+<% Theme.all.each do |theme| %>
+ <%= link_to theme.name, edit_theme_url(theme) %>
+ <%= button_to "Delete", theme_url(theme), method: "delete" %>
+<% end %>
+
+<a href="/">Main Menu</a>
+<a href="/themes/new">New Theme</a>

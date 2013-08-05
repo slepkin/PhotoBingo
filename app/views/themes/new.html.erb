@@ -1,0 +1,6 @@
+<h1>New Theme</h1>
+
+<form action="<%= themes_url %>" method="post">
+  <%= render partial: "form", locals: {theme: @theme} %>
+  <input type=submit value="Create Theme">
+</form>

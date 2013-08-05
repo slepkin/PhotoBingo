@@ -1,0 +1,8 @@
+<h1>Edit Theme</h1>
+
+<form action="<%= theme_url(@theme) %>" method="post">
+  <input type="hidden" name="_method" value="put">
+  <input type="hidden" name="theme[id]" value="<%= @theme.id %>">
+  <%= render partial: "form", locals: {theme: @theme} %>
+  <input type=submit value="Update Theme">
+</form>

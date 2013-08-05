@@ -1,0 +1,15 @@
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<h3>Name:</h3>
+<input name="theme[name]" id="name" value="<%= theme.name %>">
+<br><br>
+
+<!-- When implementing AJAX, add button to add 3 more fields -->
+<h3>Phrases</h3>
+<ul id="phrase-list">
+  <% 20.times do |i| %>
+    <input name="theme[phrases_attributes][<%= i %>][body]" class="phrase-field" value="<%= theme.phrases[i] && @theme.phrases[i].body %>">
+  <% end %>
+</ul>
+<br>
+
+<%= link_to "Back", themes_url %>
