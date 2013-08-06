@@ -3,7 +3,7 @@ class Theme < ActiveRecord::Base
 
   belongs_to :user
   has_many :phrases
-  accepts_nested_attributes_for :phrases, reject_if: :all_blank
+  accepts_nested_attributes_for :phrases, reject_if: :all_blank, allow_destroy: true
   # validate at least 16 phrases
 
   validates_presence_of :name, :user_id

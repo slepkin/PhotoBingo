@@ -8,6 +8,7 @@
 <ul id="phrase-list">
   <% 20.times do |i| %>
     <input name="theme[phrases_attributes][<%= i %>][body]" class="phrase-field" value="<%= theme.phrases[i] && @theme.phrases[i].body %>">
+    <input type="hidden" name="theme[phrases_attributes][<%= i %>][id]" value="<%= theme.phrases[i] && @theme.phrases[i].id %>">
   <% end %>
 </ul>
 <br>
