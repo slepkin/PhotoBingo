@@ -1,12 +1,13 @@
 class User < ActiveRecord::Base
-  has_secure_password
-  attr_accessible :name, :password, :password_confirmation, :password_digest
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :confirmable,
+  # :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :name
 
   has_many :themes
-  # has_many :boards
-  # has_many :games, through: :boards
-  # has_many :votes
-
-  validates_presence_of :name, uniqueness: true
-
 end

@@ -15,7 +15,7 @@
       <li class="big-nav"><%= button_to "Games", games_url, method: "get"%></li>
       <li class="big-nav"><%= button_to "Themes", themes_url, method: "get" %></li>
       <li class="small-nav">
-        <form action="<%= session_url %>" method="post">
+        <form action="<%= destroy_user_session_url %>" method="post">
           <input type="hidden" name="_method" value="delete">
           <button type=submit><i class='icon-signout'></i></button>
         </form>
@@ -25,6 +25,8 @@
 
 <%= yield %>
 
-<br><alert><%= flash[:alert] %></alert>
+<p class="alert"><%= flash[:alert] %></p>
+<p class="notice"><%= flash[:notice] %></p>
+
 </body>
 </html>

@@ -1,5 +1,5 @@
 class ThemesController < ApplicationController
-  before_filter :enforce_login
+  before_filter :authenticate_user!
 
   def index
 
@@ -32,11 +32,7 @@ class ThemesController < ApplicationController
     #Mark empty fields to delete phrases
     phrase_array = params[:theme][:phrases_attributes]
     phrase_array.each do |index, phrase|
-      p "Looking through nested attributes"
-      p "Index "+index
-      p "Boolean: "+phrase[:body]
       phrase_array[index][:_destroy] = true if phrase[:body].empty?
-      p "Plan to delete? "+phrase_array[index][:_destroy].to_s
     end
 
     if @theme.update_attributes(params[:theme])

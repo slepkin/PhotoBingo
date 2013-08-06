@@ -1,14 +1,17 @@
 PhotoBingo::Application.routes.draw do
 
-  resource :session, only: [:new, :create, :destroy]
-  resources :users, only: [:new, :create]
+  devise_for :users
+
+  root :to => 'main#menu'
+
+  # resource :session, only: [:new, :create, :destroy]
+#   resources :users, only: [:new, :create]
   resources :photos, only: [:new, :create, :destroy]
   resources :themes, except: :show
   resources :games, except: :edit
   resources :boards, only: [:show, :destroy]
   resources :photos, only: [:show, :destroy, :new, :create]
 
-  root :to => 'main#menu'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

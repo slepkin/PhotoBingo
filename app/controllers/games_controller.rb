@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_filter :enforce_login
+  before_filter :authenticate_user!
 
   def index
 
