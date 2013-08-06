@@ -10,4 +10,9 @@ class User < ActiveRecord::Base
   attr_accessible :name
 
   has_many :themes
+  has_many :boards
+  has_many :games, through: :boards
+  has_many :notifications, through: :games
+  #NB: This is the notifications you've received in all games, NOT the notifications of which you are the subject
+
 end

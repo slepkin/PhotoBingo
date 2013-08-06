@@ -1,0 +1,33 @@
+<h1>New Game</h1>
+
+<form action="<%= games_url %>" method="post">
+  <input type="hidden" name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+  <label for:"theme">Theme:</label>
+  <select name="game[theme_id]">
+  <% Theme.all.each do |theme| %>
+    <option value="<%= theme.id %>" <%= "selected" if @game.theme == theme %>>
+    <%= theme.name %></option>
+  <% end %>
+  </select>
+
+  <%= link_to "New Theme", new_theme_url %>
+  <br>
+
+  <h3>Players:</h3><br>
+  <ul>
+  <% User.all.each do |user| %>
+    <li>
+      <label for="<%= user.name %>"><%= user.name %></label>
+      <input type="checkbox" name="game[user_ids][]" value="<%= user.id %>"
+        id="<%= user.name %>">
+    </li>
+  <% end %>
+  </ul>
+
+  <%= link_to "Cancel", games_url %>
+
+  <input type="submit" value="Create Game">
+</form>
+

@@ -4,5 +4,6 @@ class Phrase < ActiveRecord::Base
   belongs_to :theme
 
   validates_presence_of :body
-  #Max body length?
+
+  #NB: There is no cells association. Cell -> phrase is one-way
 end

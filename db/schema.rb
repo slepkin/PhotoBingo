@@ -11,7 +11,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130806143750) do
+ActiveRecord::Schema.define(:version => 20130806195401) do
+
+  create_table "boards", :force => true do |t|
+    t.integer  "game_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "cells", :force => true do |t|
+    t.integer  "board_id"
+    t.integer  "phrase_id"
+    t.integer  "x_coord"
+    t.integer  "y_coord"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "games", :force => true do |t|
+    t.integer  "theme_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "phrases", :force => true do |t|
     t.string   "body"

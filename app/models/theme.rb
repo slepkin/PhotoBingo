@@ -4,6 +4,7 @@ class Theme < ActiveRecord::Base
   belongs_to :user
   has_many :phrases
   accepts_nested_attributes_for :phrases, reject_if: :all_blank, allow_destroy: true
+  has_many :games
   # validate at least 16 phrases
 
   validates_presence_of :name, :user_id
