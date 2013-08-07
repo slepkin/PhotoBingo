@@ -5,12 +5,12 @@
 <% end %>
 
 <section id="grid">
-  <% @board.size.times do |i| %>
+  <% Board::SIZE.times do |i| %>
     <row>
-    <% @board.size.times do |j| %>
+    <% Board::SIZE.times do |j| %>
       <cell>
         <a href="<%= cell_url(@board.cell_at(i,j)) if @board.game.pending_votes(current_user).empty? %>">
-          <%= @board.display_at(i,j) %>
+          <%= display_at(@board,i,j) %>
         </a>
       </cell>
     <% end %>

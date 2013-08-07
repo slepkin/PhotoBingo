@@ -9,22 +9,10 @@ class Board < ActiveRecord::Base
 
   after_create :make_cells
 
-  def size
-    4
-  end
+  SIZE = 4
 
   def pending_votes(user)
     self.cells.map { |cell| cell.pending_votes(user) }.select{|photo| photo }
-  end
-
-  def display_at(x_coord,y_coord)
-    cell = cell_at(x_coord,y_coord)
-    if cell.photo.nil?
-      cell.phrase && cell.phrase.body
-    else
-      image_tag cell.photo.img.url(:small)
-      #Remember to set :small and :big tags, as in AA GitHub
-    end
   end
 
   def cell_at(x_coord,y_coord)
@@ -36,8 +24,8 @@ class Board < ActiveRecord::Base
     phrase_ids_to_use = self.game.theme.phrases.pluck(:id).sample(16)
     cells_attributes = []
 
-    size.times do |i|
-      size.times do |j|
+    SIZE.times do |i|
+      SIZE.times do |j|
         cells_attributes << {
           :phrase_id => phrase_ids_to_use.pop,
           :x_coord => i,

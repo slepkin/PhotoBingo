@@ -4,13 +4,10 @@ PhotoBingo::Application.routes.draw do
 
   root :to => 'main#menu'
 
-  # resource :session, only: [:new, :create, :destroy]
-#   resources :users, only: [:new, :create]
-  resources :photos, only: [:new, :create, :destroy]
+  resources :photos, only: [:create, :destroy, :index]
   resources :themes, except: :show
   resources :games, except: :edit
   resources :boards, only: [:show, :destroy]
-  resources :photos, only: [:show, :destroy, :new, :create]
   resources :cells, only: :show
 
 

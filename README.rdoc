@@ -5,6 +5,9 @@ TODO:
 *Make photo new page (or maybe cell#show)
 *Make photo show page (or maybe cell#show)
 *Get Paperclip working with Amazon
+*quit a game
+**alert before quit
+**ensure destruction of descendent objects
 *notifications!
 *end game!
 

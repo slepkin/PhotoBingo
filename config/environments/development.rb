@@ -40,9 +40,9 @@ PhotoBingo::Application.configure do
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
-      :bucket => YOUR_BUCKET_NAME,
-      :access_key_id => YOUR_ACCESS_KEY_ID,
-      :secret_access_key => YOUR_SECRET_ACCESS_KEY
+      :bucket => ENV["YOUR_BUCKET_NAME"],
+      :access_key_id => ENV["YOUR_ACCESS_KEY_ID"],
+      :secret_access_key => ENV["YOUR_SECRET_ACCESS_KEY"]
     }
   }
 
