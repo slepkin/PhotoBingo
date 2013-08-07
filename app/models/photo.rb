@@ -18,7 +18,7 @@ class Photo < ActiveRecord::Base
   end
 
   def check_status
-    vote_array = self.votes.pluck(:approved)
+    vote_array = self.votes.pluck(:approve)
     number_other_players = (cell.board.game.boards.count - 1).to_f
     #This should run whenever a vote is placed
     if vote_array.count(true) >= (number_other_players / 2).ceil

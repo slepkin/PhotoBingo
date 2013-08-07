@@ -1,16 +1,45 @@
 <h2><%= @cell.phrase.body %></h2>
 
-<% if @photo %>
-  <%= image_tag @photo.img.url(:big) %>
-<% else %>
-  <form action="<%= photos_url %>" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="authenticity_token"
-      value="<%= form_authenticity_token %>">
+<section>
+  <% if @photo %>
+    <%= button_to "Discard photo", photo_url(@photo), method: :delete if @photo.cell.board.user == current_user %>
+    <%= image_tag @photo.img.url(:big) %>
 
-    <input type="hidden" name="photo[cell_id]" value="<%= @cell.id %>">
+    <h3>Status: <%= @photo.status.capitalize %></h3>
+    <% if @photo.pending_votes?(current_user) %>
+      <form action="<%= votes_url %>" method="post">
+        <input type="hidden" name="authenticity_token"
+          value="<%= form_authenticity_token %>">
+        <input type="hidden" name="vote[photo_id]" value="<%= @photo.id %>">
+        <input type="hidden" name="vote[user_id]" value="<%= current_user.id %>">
+        <input type="hidden" name="vote[approve]" value="true">
+        <input type="submit" value="Approve">
+      </form>
 
-    <input type="file" name="photo[img]">
+      <form action="<%= votes_url %>" method="post">
+        <input type="hidden" name="authenticity_token"
+          value="<%= form_authenticity_token %>">
+        <input type="hidden" name="vote[photo_id]" value="<%= @photo.id %>">
+        <input type="hidden" name="vote[user_id]" value="<%= current_user.id %>">
+        <input type="hidden" name="vote[approve]" value="false">
+        <input type="submit" value="Reject">
+      </form>
 
-    <input type="submit" value="Upload Photo">
-  </form>
-<% end %>
+    <% end %>
+
+  <% else %>
+    <form action="<%= photos_url %>" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="authenticity_token"
+        value="<%= form_authenticity_token %>">
+
+      <input type="hidden" name="photo[cell_id]" value="<%= @cell.id %>">
+
+      <input type="file" name="photo[img]"><br>
+
+      <input type="submit" value="Upload Photo">
+    </form>
+  <% end %>
+
+  <%= link_to "Back to Board", board_url(@cell.board) %>
+</section>
+

@@ -1,12 +1,14 @@
 class PhotosController < ApplicationController
   before_filter :authenticate_user!
 
-  def index
-
-  end
-
   def destroy
-
+    @photo = Photo.find(params[:id])
+    if @photo.cell.board.user == current_user
+      @photo.destroy
+    else
+      flash[:alert] = "Not your photo."
+    end
+    redirect_to :back
   end
 
   def create

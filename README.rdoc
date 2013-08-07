@@ -1,10 +1,5 @@
 TODO:
 
-*Make cell show page
-*photos_controller new, create, show
-*Make photo new page (or maybe cell#show)
-*Make photo show page (or maybe cell#show)
-*Get Paperclip working with Amazon
 *quit a game
 **alert before quit
 **ensure destruction of descendent objects
