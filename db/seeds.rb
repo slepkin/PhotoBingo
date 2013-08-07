@@ -12,7 +12,8 @@ User.create({:name => "simon", :email => "blah@blah.com",
 User.create({:name => "bill", :email => "blah@blah.net",
   :password => "password", :password_confirmation => "password"})
 
-Theme.create({:name => "Cats",
+Theme.create({:name => "Cats", :user_id => 1,
   :phrases_attributes =>
-    {"1"=>{:body=>"hello"},"2"=>{:body=>"I am a cat"}}
+    {"1"=>{:body=>"hello"},
+    "2"=>{:body=>"I am a cat"}}
     })

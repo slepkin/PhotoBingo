@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130806195401) do
+ActiveRecord::Schema.define(:version => 20130807171327) do
 
   create_table "boards", :force => true do |t|
     t.integer  "game_id"
@@ -33,6 +33,23 @@ ActiveRecord::Schema.define(:version => 20130806195401) do
     t.integer  "theme_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "notifications", :force => true do |t|
+    t.integer  "game_id"
+    t.integer  "subject_id"
+    t.string   "body"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "strong",     :default => false
+  end
+
+  create_table "photos", :force => true do |t|
+    t.integer  "cell_id"
+    t.string   "img"
+    t.string   "status",     :default => "pending"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
   create_table "phrases", :force => true do |t|
@@ -67,5 +84,13 @@ ActiveRecord::Schema.define(:version => 20130806195401) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "visits", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "game_id"
+    t.integer  "count",      :default => 0
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
 
 end

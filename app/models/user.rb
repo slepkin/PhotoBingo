@@ -12,7 +12,11 @@ class User < ActiveRecord::Base
   has_many :themes
   has_many :boards
   has_many :games, through: :boards
+  has_many :visits
   has_many :notifications, through: :games
   #NB: This is the notifications you've received in all games, NOT the notifications of which you are the subject
+  has_many :votes
+  #NB: These are the votes you've made, NOT the votes made on te photos you've posted
+
 
 end

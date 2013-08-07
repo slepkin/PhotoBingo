@@ -1,8 +1,25 @@
 <h1>My Board</h1>
 
-<alert>You cannot submit a photo until you have voted on all pending photos!</alert>
+<% unless @game.pending_votes(current_user).empty? %>
+  <alert>You cannot submit a photo until you have voted on all pending photos!</alert>
+<% end %>
 
-<table>
+<section id="grid">
+  <% @board.size.times do |i| %>
+    <row>
+    <% @board.size.times do |j| %>
+      <cell>
+        <a href="<%= cell_url(@board.cell_at(i,j)) if @board.game.pending_votes(current_user).empty? %>">
+          <%= @board.display_at(i,j) %>
+        </a>
+      </cell>
+    <% end %>
+    </row>
+  <% end %>
+</section>
+
+
+<!-- <table>
   <tr>
     <td><a href="/photos/new?p=wet+cat">wet cat</a></td>
     <td>sleeping cat</td>
@@ -27,6 +44,6 @@
     <td>cat with dog</td>
     <td><img src="http://www.warrenphotographic.co.uk/photography/bigs/04178-Cat-looking-up-from-grooming-white-background.jpg" height=120 widtd=120></td>
   </tr>
-</table>
+</table> -->
 
-<a href="/games/1">Back to Game</a>
+<%= link_to "Back to Game", game_url(@board.game) %>

@@ -1,3 +1,21 @@
+TODO:
+
+*Make cell show page
+*photos_controller new, create, show
+*Make photo new page (or maybe cell#show)
+*Make photo show page (or maybe cell#show)
+*Get Paperclip working with Amazon
+*notifications!
+*end game!
+
+
+
+
+
+
+
+
+
 == Welcome to Rails
 
 Rails is a web-application framework that includes everything needed to create

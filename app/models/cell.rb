@@ -8,4 +8,13 @@ class Cell < ActiveRecord::Base
 
   #Validate uniqueness of (x_coord, y_coord, board_id)
   #validate x_coord, y_coord in [0...size]
+
+  def pending_votes(user)
+    if photo && photo.pending_votes?(user)
+      photo
+    else
+      nil
+    end
+  end
+
 end

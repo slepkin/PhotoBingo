@@ -36,4 +36,14 @@ PhotoBingo::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => YOUR_BUCKET_NAME,
+      :access_key_id => YOUR_ACCESS_KEY_ID,
+      :secret_access_key => YOUR_SECRET_ACCESS_KEY
+    }
+  }
+
 end

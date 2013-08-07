@@ -24,6 +24,15 @@ PhotoBingo::Application.configure do
   # This one has nothing to do with Devise, actually. You need to do this anytime you use Heroku. When the asset pipeline compiles your assets, it will first try to initialize a connection to your database. Heroku will not let you do this; it wants to compile your assets before it connects to the DB. Luckily, this is fine since there's no reason you should touch the DB during asset compilation.
   config.assets.initialize_on_precompile = false
 
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => YOUR_BUCKET_NAME,
+      :access_key_id => YOUR_ACCESS_KEY_ID,
+      :secret_access_key => YOUR_SECRET_ACCESS_KEY
+    }
+  }
+
 
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH

@@ -1,0 +1,47 @@
+<section class="game-attributes left">
+  <h3>Theme: <%= @game.theme.name %></h3>
+
+  <section class="players">
+    <h3>Players:</h3>
+    <ul>
+    <% @game.users.each do |user| %>
+      <li><%= user.name.capitalize %></li>
+    <% end %>
+    </ul>
+  </section>
+
+  <% my_board = current_user.boards.find_by_game_id(@game.id) %>
+  <%= link_to "My Board", board_url(my_board) %><br>
+
+</section>
+
+<section class="notifications right">
+  <h3>Notifications</h3>
+  <ul>
+  <% @game.notifications.order("created_at").each do |notification| %>
+    <li>
+      <%= "<strong>" if notification.strong %>
+      <%= notification.display_for(current_user) %>
+      <%= "</strong>" if notification.strong %>
+    </li>
+  <% end %>
+  </ul>
+</section>
+
+<!-- <li>Game Begins 7/1/13</li>
+<li>You approved photo of
+  <a href="/photos/1">wet cat</a>
+  7/2/13</li>
+<li>Your photo of
+  <a href="/photos/1">happy cat</a>
+  was submitted 7/4/13</li>
+<li>You rejected photo of
+  <a href="/photos/1">sleepy cat</a> 7/7/13</li>
+<li>Carol quit game 7/7/13</li>
+<li>Your photo of
+  <a href="/photos/1">happy cat</a>
+   was accepted 7/11/13</li>
+<li class="pending">You have a
+  <a href="/photos/1">photo</a>
+  to vote on 7/11/13</li> -->
+

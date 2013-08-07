@@ -1,6 +1,28 @@
 class Photo < ActiveRecord::Base
-  attr_accessible :src, :cell_id
+  attr_accessible :img, :cell_id, :status
+  #status can be "pending", "approved", "rejected"
+  #set default to pending in database!!!
 
   belongs_to :cell
+  has_many :votes
+
+  def pending_votes?(user)
+    self.status == "pending" &&
+    self.votes.find_by_user_id(user.id).nil? &&
+    user.id != self.cell.board.user.id
+  end
+
+  def check_status
+    vote_array = self.votes.pluck(:approved)
+    number_other_players = (self.cell.board.game.boards.count - 1).to_f
+    #This should run whenever a vote is placed
+    if vote_array.count(true) >= (number_other_players / 2).ceil
+      self.status = "approved"
+      self.save
+    elsif vote_array.count(false) >= (number_other_players / 2).floor
+      self.status = "rejected"
+      self.save
+    end
+  end
 
 end

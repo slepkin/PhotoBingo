@@ -11,6 +11,7 @@ PhotoBingo::Application.routes.draw do
   resources :games, except: :edit
   resources :boards, only: [:show, :destroy]
   resources :photos, only: [:show, :destroy, :new, :create]
+  resources :cells, only: :show
 
 
   # The priority is based upon order of creation:

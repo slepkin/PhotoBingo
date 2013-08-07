@@ -9,13 +9,35 @@ class Board < ActiveRecord::Base
 
   after_create :make_cells
 
+  def size
+    4
+  end
+
+  def pending_votes(user)
+    self.cells.map { |cell| cell.pending_votes(user) }.select{|photo| photo }
+  end
+
+  def display_at(x_coord,y_coord)
+    cell = cell_at(x_coord,y_coord)
+    if cell.photo.nil?
+      cell.phrase && cell.phrase.body
+    else
+      image_tag cell.photo.img.url(:small)
+      #Remember to set :small and :big tags, as in AA GitHub
+    end
+  end
+
+  def cell_at(x_coord,y_coord)
+    cells.find_by_x_coord_and_y_coord(x_coord, y_coord)
+  end
+
   private
   def make_cells
     phrase_ids_to_use = self.game.theme.phrases.pluck(:id).sample(16)
     cells_attributes = []
 
-    4.times do |i|
-      4.times do |j|
+    size.times do |i|
+      size.times do |j|
         cells_attributes << {
           :phrase_id => phrase_ids_to_use.pop,
           :x_coord => i,
@@ -27,39 +49,6 @@ class Board < ActiveRecord::Base
     self.cells.create(cells_attributes)
   end
 
-  def populate(theme)
-    p "Starting to populate cells of a board"
-    phrase_ids_to_use = theme.phrases.pluck(:id).sample(16)
-    self.cells_attributes = []
 
-    4.times do |i|
-      4.times do |j|
-        print "Adding cell at " +[i,j].to_s
-        self.cells.new << {
-          :phrase_id => phrase_ids_to_use.pop,
-          :x_coord => i,
-          :y_coord => j
-        }
-      end
-    end
-
-  end
-
-  def Board.new(options = {})
-    board = super(options)
-    phrase_ids_to_use = board.theme.phrases.pluck(:id).sample(16)
-    board.cells_attributes = []
-
-    4.times do |i|
-      4.times do |j|
-        print "Adding cell at " +[i,j].to_s
-        self.cells_attributes << {
-          :phrase_id => phrase_ids_to_use.pop,
-          :x_coord => i,
-          :y_coord => j
-        }
-      end
-    end
-  end
 
 end

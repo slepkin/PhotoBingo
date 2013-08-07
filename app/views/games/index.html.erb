@@ -1,0 +1,16 @@
+<h1>My Games</h1>
+
+<% @games.each do |game| %>
+
+  <% game_name = game.theme.name +
+    " with " +
+    game.users.map{|user| user.name.capitalize }.join(", ") %>
+
+  <%= link_to game_name, game_url(game) %>
+  <%= "<alert>New Notifications!</alert>" if game.new_notifications?(current_user) %>
+  <button>Abandon this Game</button><br>
+<% end %>
+
+
+<a href="/">Main Menu</a>
+<a href="/games/new">New Game</a>
