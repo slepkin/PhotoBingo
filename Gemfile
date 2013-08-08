@@ -11,6 +11,7 @@ end
 
 group :development do
   gem 'sqlite3'
+  gem 'debugger'
 end
 
 gem 'devise'
@@ -56,4 +57,4 @@ gem 'verbs'
 # gem 'capistrano'
 
 # To use debugger
-gem 'debugger'
+
