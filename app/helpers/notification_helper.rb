@@ -5,7 +5,7 @@ module NotificationHelper
   end
 
   def to_html(notification)
-    show_url = cell_url(notification.photo.cell)
+    show_url = cell_url(notification.photo.cell) if notification.photo
     possessive = possessive_to_s(notification)
 
     case notification.quality

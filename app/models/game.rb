@@ -9,8 +9,6 @@ class Game < ActiveRecord::Base
   has_many :visits, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
-  after_destroy :kill_orphaned_phrases
-
   #validate >1 user
 
   def new_notifications?(user)

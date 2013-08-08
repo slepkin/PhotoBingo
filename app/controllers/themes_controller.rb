@@ -12,8 +12,10 @@ class ThemesController < ApplicationController
   def create
     @theme = Theme.new(params[:theme])
     @theme.user_id = current_user.id
+    phrase_count = params[:theme][:phrases_attributes].count{|key,val| val[:body] != ""}
+    p params[:theme][:phrases_attributes]
 
-    if @theme.save
+    if phrase_count >= 16 && @theme.save
       redirect_to themes_url
     else
       flash.now[:alert] = "Make sure the theme has a name, and at least 16 phrases (NYI)"
@@ -34,8 +36,10 @@ class ThemesController < ApplicationController
     phrase_array.each do |index, phrase|
       phrase_array[index][:_destroy] = true if phrase[:body].empty?
     end
+    phrase_count = phrase_array.count{|key,val| val[:body] != ""}
+    p params[:theme][:phrases_attributes]
 
-    if @theme.update_attributes(params[:theme])
+    if phrase_count >= 16 && @theme.update_attributes(params[:theme])
       redirect_to themes_url
     else
       flash.now[:alert] = "Make sure the theme has a name, and at least 16 phrases (NYI)"
