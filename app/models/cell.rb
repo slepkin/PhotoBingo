@@ -4,7 +4,9 @@ class Cell < ActiveRecord::Base
 
   belongs_to :board
   belongs_to :phrase
-  has_one :photo
+  has_one :photo, dependent: :destroy
+
+  before_destroy :kill_phrase_if_orphan
 
   #Validate uniqueness of (x_coord, y_coord, board_id)
   #validate x_coord, y_coord in [0...size]
@@ -18,5 +20,11 @@ class Cell < ActiveRecord::Base
       nil
     end
   end
+
+  private
+  def kill_phrase_if_orphan
+    phrase.destroy if phrase.theme.nil?
+  end
+  #When a theme dies, phrases are not deleted. We want them to be deleted iff they are not attached to any cells or theme
 
 end

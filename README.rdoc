@@ -1,13 +1,12 @@
 TODO:
 
-*quit a game
-**alert before quit
-**ensure destruction of descendent objects
-*notifications!
-*end game!
+* notifications!
+* end game!
+** remember to add notification of quality "win", and make all boards available only if someone won
+* (styling: start with this) add grid for Board template
 
-
-
+* break cells/show.html.erb into a bunch of partials
+* link notifications to a board, instead of a subject AND a game
 
 
 

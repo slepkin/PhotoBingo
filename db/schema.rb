@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130807213602) do
+ActiveRecord::Schema.define(:version => 20130808190223) do
 
   create_table "boards", :force => true do |t|
     t.integer  "game_id"
@@ -38,10 +38,10 @@ ActiveRecord::Schema.define(:version => 20130807213602) do
   create_table "notifications", :force => true do |t|
     t.integer  "game_id"
     t.integer  "subject_id"
-    t.string   "body"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.boolean  "strong",     :default => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "quality"
+    t.integer  "photo_id"
   end
 
   create_table "photos", :force => true do |t|

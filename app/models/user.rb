@@ -12,11 +12,17 @@ class User < ActiveRecord::Base
   has_many :themes
   has_many :boards
   has_many :games, through: :boards
-  has_many :visits
-  has_many :notifications, through: :games
+  has_many :received_notifications, through: :games, class_name: "Notification",
+    source: :notifications
   #NB: This is the notifications you've received in all games, NOT the notifications of which you are the subject
+  has_many :visits
+  has_many :notifications, foreign_key: :subject_id
+  #NB: These are the notifications ABOUT you
   has_many :votes
-  #NB: These are the votes you've made, NOT the votes made on te photos you've posted
+  #NB: These are the votes you've made, NOT the votes made on the photos you've posted
+
+
+  #We'll assume users can't be destroyed.
 
 
 end

@@ -4,30 +4,47 @@ class Photo < ActiveRecord::Base
   #set default to pending in database!!!
 
   belongs_to :cell
-  has_many :votes
+  has_many :notifications
+  has_many :votes, dependent: :destroy
 
   has_attached_file :img, :styles => {
     :big => "600x600",
     :small => "#{Cell::WIDTH}x#{Cell::WIDTH}"
   }
 
+  after_create :notify_players
+  before_destroy :debugger
+
   def pending_votes?(user)
-    self.status == "pending" &&
-    self.votes.find_by_user_id(user.id).nil? &&
+    status == "pending" &&
+    votes.find_by_user_id(user.id).nil? &&
     user.id != cell.board.user.id
   end
 
   def check_status
-    vote_array = self.votes.pluck(:approve)
-    number_other_players = (cell.board.game.boards.count - 1).to_f
     #This should run whenever a vote is placed
+    game = cell.board.game
+    vote_array = self.votes.pluck(:approve)
+    number_other_players = (game.boards.count - 1).to_f
     if vote_array.count(true) >= (number_other_players / 2).ceil
-      self.status = "approved"
-      self.save
+      update_attribute(:status, "accepted")
+      notifications.create(subject_id: cell.board.user.id,
+        game_id: game.id,
+        quality: "accept")
     elsif vote_array.count(false) >= (number_other_players / 2).floor
-      self.status = "rejected"
-      self.save
+      update_attribute(:status, "rejected")
+      notifications.create(subject_id: cell.board.user.id,
+        game_id: game.id,
+        quality: "reject")
     end
+  end
+
+  private
+  def notify_players
+    board = cell.board
+    board.game.notifications.create(subject_id: board.user.id,
+      quality: "new", photo_id: id)
+      #I'm worried that the photo doesn't know its primary key yet
   end
 
 end

@@ -2,11 +2,14 @@
 
 <section>
   <% if @photo %>
-    <%= button_to "Discard photo", photo_url(@photo), method: :delete if @photo.cell.board.user == current_user %>
     <%= image_tag @photo.img.url(:big) %>
 
     <h3>Status: <%= @photo.status.capitalize %></h3>
-    <% if @photo.pending_votes?(current_user) %>
+    <% if @photo.cell.board.user == current_user %>
+      <%= button_to "Discard Photo", photo_url(@photo), method: :delete,
+         data: { confirm: "Are you sure you wish to discard this photo?\nYou will lose any votes given for it!"}%><br>
+    <% elsif @photo.pending_votes?(current_user) %>
+    <!-- These should really be partials -->
       <form action="<%= votes_url %>" method="post">
         <input type="hidden" name="authenticity_token"
           value="<%= form_authenticity_token %>">
@@ -40,6 +43,6 @@
     </form>
   <% end %>
 
-  <%= link_to "Back to Board", board_url(@cell.board) %>
+  <%= link_to "Back to Board", board_url(@cell.board.game.boards.find_by_user_id(current_user.id)) %>
 </section>
 

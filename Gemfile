@@ -43,6 +43,9 @@ gem 'aws-sdk'
 #Figaro handles secrets
 gem 'figaro'
 
+#Changes tense, subject, plurality, etc. of a verb. Used by Notifications
+gem 'verbs'
+
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 
@@ -53,4 +56,4 @@ gem 'figaro'
 # gem 'capistrano'
 
 # To use debugger
-# gem 'debugger'
+gem 'debugger'

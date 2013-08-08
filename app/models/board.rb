@@ -3,11 +3,12 @@ class Board < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :game
-  has_many :cells
+  has_many :cells, dependent: :destroy
   accepts_nested_attributes_for :cells
   has_many :phrases, through: :cells #needed?
 
   after_create :make_cells
+  after_destroy :notify_other_players, :destroy_game_if_empty
 
   SIZE = 4
 
@@ -37,6 +38,13 @@ class Board < ActiveRecord::Base
     self.cells.create(cells_attributes)
   end
 
+  def notify_other_players
+    game.notifications.create(subject_id: user.id,
+      quality: "quit")
+  end
 
+  def destroy_game_if_empty
+    game.destroy if game.boards.empty?
+  end
 
 end

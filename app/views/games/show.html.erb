@@ -12,6 +12,8 @@
 
   <% my_board = current_user.boards.find_by_game_id(@game.id) %>
   <%= link_to "My Board", board_url(my_board) %><br>
+  <%= button_to "Quit Game", board_url(my_board), method: :delete,
+     data: { confirm: "Are you sure you wish to quit?\nThis is permanent!"}%><br>
 
 </section>
 
@@ -20,9 +22,7 @@
   <ul>
   <% @game.notifications.order("created_at").each do |notification| %>
     <li>
-      <%= "<strong>" if notification.strong %>
-      <%= notification.display_for(current_user) %>
-      <%= "</strong>" if notification.strong %>
+      <%= to_html(notification).html_safe %>
     </li>
   <% end %>
   </ul>

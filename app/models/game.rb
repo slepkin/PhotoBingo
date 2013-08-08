@@ -2,12 +2,14 @@ class Game < ActiveRecord::Base
   attr_accessible :theme_id, :user_ids
 
   belongs_to :theme
-  has_many :boards
+  has_many :boards, dependent: :destroy
   has_many :cells, through: :boards
   has_many :photos, through: :cells
   has_many :users, through: :boards
-  has_many :visits
-  has_many :notifications
+  has_many :visits, dependent: :destroy
+  has_many :notifications, dependent: :destroy
+
+  after_destroy :kill_orphaned_phrases
 
   #validate >1 user
 
@@ -28,5 +30,6 @@ class Game < ActiveRecord::Base
   def most_recent_notification
     self.notifications.order("created_at").last
   end
+
 
 end
