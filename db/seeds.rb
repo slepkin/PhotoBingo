@@ -14,6 +14,23 @@ User.create({:name => "bill", :email => "blah@blah.net",
 
 Theme.create({:name => "Cats", :user_id => 1,
   :phrases_attributes =>
-    {"1"=>{:body=>"hello"},
-    "2"=>{:body=>"I am a cat"}}
-    })
+    {
+      "0"=>{:body=>"gwehbt"},
+      "1"=>{:body=>"heldfgslo"},
+      "2"=>{:body=>"helhtryhrlo"},
+      "3"=>{:body=>"bdf"},
+      "4"=>{:body=>"ertjyt"},
+      "5"=>{:body=>"hertb"},
+      "6"=>{:body=>"w3g"},
+      "7"=>{:body=>"jyrt"},
+      "8"=>{:body=>"versbt"},
+      "9"=>{:body=>"jyrj"},
+      "10"=>{:body=>"hewerfllo"},
+      "11"=>{:body=>"qwefafwe"},
+      "12"=>{:body=>"juy6jr"},
+      "13"=>{:body=>"greb"},
+      "14"=>{:body=>"jytrj"},
+      "15"=>{:body=>"vsdv"}
+    }
+  }
+)
