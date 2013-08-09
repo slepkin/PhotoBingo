@@ -1,9 +1,9 @@
 TODO:
 
-* (styling: start with this) add grid for Board template
+* styling...
 
 * break cells/show.html.erb into a bunch of partials
-* Give error if try to submit ohoto with no image
+* Give error if try to submit photo with no image
 * link notifications to a board, instead of a subject AND a game
 
 
