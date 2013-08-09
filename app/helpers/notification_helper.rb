@@ -26,7 +26,10 @@ module NotificationHelper
 
   #not done
   def pending_photo_notice(notification, show_url)
-    my_votes = notification.photo.votes.where("user_id = ?", current_user.id)
+    if notification.photo
+      my_votes = notification.photo.votes.where("user_id = ?", current_user.id)
+    end
+
     if current_user == notification.subject
       link_to "Your photo is still pending votes.", show_url
     elsif my_votes.blank?
