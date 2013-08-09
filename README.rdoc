@@ -1,13 +1,7 @@
 TODO:
 
-* end game!
-  * Forbid lots of actions when game.end true (and hide relevant buttons)
-  * allow checking other players' boards (and show buttons)
-  * change notification "win"
-** remember to add notification of quality "win", and make all boards available only if someone won
 * (styling: start with this) add grid for Board template
 
-* add indices for foreign keys
 * break cells/show.html.erb into a bunch of partials
 * Give error if try to submit ohoto with no image
 * link notifications to a board, instead of a subject AND a game

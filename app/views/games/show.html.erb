@@ -17,7 +17,7 @@
   </section>
 
   <% my_board = current_user.boards.find_by_game_id(@game.id) %>
-  <%= link_to "My Board", board_url(my_board) %><br>
+  <%= button_to "My Board", board_url(my_board), method: :get %><br>
   <%= button_to "Quit Game", board_url(my_board), method: :delete,
      data: { confirm: "Are you sure you wish to quit?\nThis is permanent!"}%><br>
 
@@ -34,20 +34,4 @@
   </ul>
 </section>
 
-<!-- <li>Game Begins 7/1/13</li>
-<li>You approved photo of
-  <a href="/photos/1">wet cat</a>
-  7/2/13</li>
-<li>Your photo of
-  <a href="/photos/1">happy cat</a>
-  was submitted 7/4/13</li>
-<li>You rejected photo of
-  <a href="/photos/1">sleepy cat</a> 7/7/13</li>
-<li>Carol quit game 7/7/13</li>
-<li>Your photo of
-  <a href="/photos/1">happy cat</a>
-   was accepted 7/11/13</li>
-<li class="pending">You have a
-  <a href="/photos/1">photo</a>
-  to vote on 7/11/13</li> -->
 

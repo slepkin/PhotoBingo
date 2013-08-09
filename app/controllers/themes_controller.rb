@@ -47,4 +47,15 @@ class ThemesController < ApplicationController
     end
   end
 
+  def destroy
+    @theme = Theme.find(params[:id])
+    if @theme.user == current_user
+      @theme.destroy
+    else
+      flash[:alert] = "You are not the author if this theme."
+    end
+    redirect_to :back
+  end
+
+
 end

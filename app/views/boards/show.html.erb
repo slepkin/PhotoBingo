@@ -3,47 +3,22 @@
 <% unless @game.pending_votes(current_user).empty? %>
   <alert>You cannot submit a photo until you have voted on all pending photos!</alert>
 <% end %>
+<br>
+<%= link_to "Back to Game", game_url(@board.game) %>
+<br>
 
 <section id="grid">
-  <% Board::SIZE.times do |i| %>
-    <row>
-    <% Board::SIZE.times do |j| %>
-      <cell>
-        <a href="<%= cell_url(@board.cell_at(i,j)) if @board.game.pending_votes(current_user).empty? %>">
-          <%= display_at(@board,i,j) %>
-        </a>
-      </cell>
+  <% Board::CARDINAL.times do |i| %>
+    <row class="group">
+    <% Board::CARDINAL.times do |j| %>
+      <% if @board.game.pending_votes(current_user).empty? %>
+        <a href="<%= cell_url(@board.cell_at(i,j))  %>">
+          <cell><%= display_at(@board,i,j) %></cell></a>
+      <% else %>
+        <cell><%= display_at(@board,i,j) %></cell>
+      <% end %>
     <% end %>
     </row>
   <% end %>
 </section>
 
-
-<!-- <table>
-  <tr>
-    <td><a href="/photos/new?p=wet+cat">wet cat</a></td>
-    <td>sleeping cat</td>
-    <td>hissing cat</td>
-    <td>retreating cat</td>
-  </tr>
-  <tr>
-    <td>cat likes water</td>
-    <td><a href="/photos/1"><img src="http://i.imgur.com/xKE07.jpg" height=120 widtd=120></a></td>
-    <td><img src="http://t3.gstatic.com/images?q=tbn:ANd9GcTVKRRkGFABht1X6DRqsG3i0xGlTaSJvqv3IuHk1wk3DZlWF3pz" height=120 widtd=120></td>
-    <td>cat fears water</td>
-  </tr>
-  <tr>
-    <td>box of cats</td>
-    <td>box with one cat</td>
-    <td>cat in wrong place</td>
-    <td>destructive cat</td>
-  </tr>
-  <tr>
-    <td>plainclothes cat</td>
-    <td>disguised as a cat</td>
-    <td>cat with dog</td>
-    <td><img src="http://www.warrenphotographic.co.uk/photography/bigs/04178-Cat-looking-up-from-grooming-white-background.jpg" height=120 widtd=120></td>
-  </tr>
-</table> -->
-
-<%= link_to "Back to Game", game_url(@board.game) %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130809144506) do
+ActiveRecord::Schema.define(:version => 20130809181928) do
 
   create_table "boards", :force => true do |t|
     t.integer  "game_id"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20130809144506) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "boards", ["game_id", "user_id"], :name => "index_boards_on_game_id_and_user_id"
 
   create_table "cells", :force => true do |t|
     t.integer  "board_id"
@@ -29,12 +31,16 @@ ActiveRecord::Schema.define(:version => 20130809144506) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "cells", ["board_id", "phrase_id"], :name => "index_cells_on_board_id_and_phrase_id"
+
   create_table "games", :force => true do |t|
     t.integer  "theme_id"
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
     t.boolean  "end",        :default => false
   end
+
+  add_index "games", ["theme_id"], :name => "index_games_on_theme_id"
 
   create_table "notifications", :force => true do |t|
     t.integer  "game_id"
@@ -44,6 +50,8 @@ ActiveRecord::Schema.define(:version => 20130809144506) do
     t.string   "quality"
     t.integer  "photo_id"
   end
+
+  add_index "notifications", ["subject_id", "game_id", "photo_id"], :name => "index_notifications_on_subject_id_and_game_id_and_photo_id"
 
   create_table "photos", :force => true do |t|
     t.integer  "cell_id"
@@ -57,6 +65,8 @@ ActiveRecord::Schema.define(:version => 20130809144506) do
     t.datetime "img_updated_at"
   end
 
+  add_index "photos", ["cell_id"], :name => "index_photos_on_cell_id"
+
   create_table "phrases", :force => true do |t|
     t.string   "body"
     t.integer  "theme_id"
@@ -64,12 +74,16 @@ ActiveRecord::Schema.define(:version => 20130809144506) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "phrases", ["theme_id"], :name => "index_phrases_on_theme_id"
+
   create_table "themes", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "themes", ["user_id"], :name => "index_themes_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name",                   :default => "", :null => false
@@ -98,6 +112,8 @@ ActiveRecord::Schema.define(:version => 20130809144506) do
     t.datetime "updated_at",                :null => false
   end
 
+  add_index "visits", ["user_id", "game_id"], :name => "index_visits_on_user_id_and_game_id"
+
   create_table "votes", :force => true do |t|
     t.integer  "user_id"
     t.integer  "photo_id"
@@ -105,5 +121,7 @@ ActiveRecord::Schema.define(:version => 20130809144506) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "votes", ["user_id", "photo_id"], :name => "index_votes_on_user_id_and_photo_id"
 
 end

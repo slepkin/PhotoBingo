@@ -10,7 +10,9 @@ class Board < ActiveRecord::Base
   after_create :make_cells
   after_destroy :notify_other_players, :destroy_game_if_empty
 
-  SIZE = 4
+  CARDINAL = 4
+  WIDTH = 800
+  BORDER = 1 #actual border is double this
 
   def pending_votes(user)
     self.cells.map { |cell| cell.pending_votes(user) }.select{|photo| photo }
@@ -34,16 +36,16 @@ class Board < ActiveRecord::Base
       map{|cell|[cell.x_coord, cell.y_coord]}
 
     #Check for horizontal or vertical wins
-    SIZE.times do |i|
-      return true if (coords_with_photos.select{|coord| coord[0] == i }.length >= SIZE)
-      return true if (coords_with_photos.select{|coord| coord[1] == i }.length >= SIZE)
+    CARDINAL.times do |i|
+      return true if (coords_with_photos.select{|coord| coord[0] == i }.length >= CARDINAL)
+      return true if (coords_with_photos.select{|coord| coord[1] == i }.length >= CARDINAL)
     end
 
     #Check for diagonal win
-    return true if (coords_with_photos.select{|coord| coord[0] == coord[1] }.length >= SIZE)
+    return true if (coords_with_photos.select{|coord| coord[0] == coord[1] }.length >= CARDINAL)
 
     #Check for antidiagonal win
-    return true if (coords_with_photos.select{|coord| coord[0] + coord[1] == SIZE-1 }.length >= SIZE)
+    return true if (coords_with_photos.select{|coord| coord[0] + coord[1] == CARDINAL-1 }.length >= CARDINAL)
 
     false
   end
@@ -53,8 +55,8 @@ class Board < ActiveRecord::Base
     phrase_ids_to_use = self.game.theme.phrases.pluck(:id).sample(16)
     cells_attributes = []
 
-    SIZE.times do |i|
-      SIZE.times do |j|
+    CARDINAL.times do |i|
+      CARDINAL.times do |j|
         cells_attributes << {
           :phrase_id => phrase_ids_to_use.pop,
           :x_coord => i,
