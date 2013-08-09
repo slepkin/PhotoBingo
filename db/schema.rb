@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130808190223) do
+ActiveRecord::Schema.define(:version => 20130809144506) do
 
   create_table "boards", :force => true do |t|
     t.integer  "game_id"
@@ -31,8 +31,9 @@ ActiveRecord::Schema.define(:version => 20130808190223) do
 
   create_table "games", :force => true do |t|
     t.integer  "theme_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "end",        :default => false
   end
 
   create_table "notifications", :force => true do |t|

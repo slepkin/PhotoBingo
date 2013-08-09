@@ -1,9 +1,9 @@
 <h2><%= @cell.phrase.body %></h2>
+<%= link_to "Back to My Board", board_url(@cell.board.game.boards.find_by_user_id(current_user.id)) %>
+<%= link_to "Back to This Board", board_url(@cell.board) if @cell.board.game.end %>
 
 <section>
   <% if @photo %>
-    <%= image_tag @photo.img.url(:big) %>
-
     <h3>Status: <%= @photo.status.capitalize %></h3>
     <% if @photo.cell.board.user == current_user %>
       <%= button_to "Discard Photo", photo_url(@photo), method: :delete,
@@ -30,6 +30,8 @@
 
     <% end %>
 
+  <%= image_tag @photo.img.url(:big) %>
+
   <% else %>
     <form action="<%= photos_url %>" method="post" enctype="multipart/form-data">
       <input type="hidden" name="authenticity_token"
@@ -43,6 +45,6 @@
     </form>
   <% end %>
 
-  <%= link_to "Back to Board", board_url(@cell.board.game.boards.find_by_user_id(current_user.id)) %>
+
 </section>
 

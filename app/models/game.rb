@@ -1,5 +1,5 @@
 class Game < ActiveRecord::Base
-  attr_accessible :theme_id, :user_ids
+  attr_accessible :theme_id, :user_ids, :end
 
   belongs_to :theme
   has_many :boards, dependent: :destroy
@@ -13,9 +13,8 @@ class Game < ActiveRecord::Base
 
   def new_notifications?(user)
     last_visit = Visit.find_by_user_id_and_game_id(user.id, self.id)
-    last_visit &&
-      most_recent_notification &&
-      last_visit.updated_at < most_recent_notification.created_at
+    most_recent_notification &&
+      (!last_visit || last_visit.updated_at < most_recent_notification.created_at)
   end
 
   def pending_votes(user)

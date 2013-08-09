@@ -21,5 +21,8 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
+    visit = @game.visits.find_or_initialize_by_user_id(current_user.id)
+    visit.count += 1
+    visit.save
   end
 end

@@ -3,6 +3,10 @@ class BoardsController < ApplicationController
   def show
     @board = Board.find(params[:id])
     @game = @board.game
+    unless (@board.user == current_user) || @game.end
+      flash[:notice] = "You may not view this board until the game is over."
+      redirect_to :back
+    end
   end
 
   def destroy

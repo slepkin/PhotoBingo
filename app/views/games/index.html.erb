@@ -7,7 +7,7 @@
     game.users.map{|user| user.name.capitalize }.join(", ") %>
 
   <%= link_to game_name, game_url(game) %>
-  <%= "<alert>New Notifications!</alert>" if game.new_notifications?(current_user) %>
+  <%= "<alert>New Notifications!</alert>".html_safe if game.new_notifications?(current_user) %>
   <br>
 <% end %>
 
