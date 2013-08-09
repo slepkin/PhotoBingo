@@ -1,17 +1,17 @@
 <h1>My Board</h1>
 
-<% unless @game.pending_votes(current_user).empty? %>
+<% unless @game.pending_votes(current_user).blank? %>
   <alert>You cannot submit a photo until you have voted on all pending photos!</alert>
 <% end %>
 <br>
-<%= link_to "Back to Game", game_url(@board.game) %>
+<%= link_to "Back to Game", game_url(@board.game), class: "button" %>
 <br>
 
 <section id="grid">
   <% Board::CARDINAL.times do |i| %>
     <row class="group">
     <% Board::CARDINAL.times do |j| %>
-      <% if @board.game.pending_votes(current_user).empty? %>
+      <% if @board.game.pending_votes(current_user).blank? %>
         <a href="<%= cell_url(@board.cell_at(i,j))  %>">
           <cell><%= display_at(@board,i,j) %></cell></a>
       <% else %>

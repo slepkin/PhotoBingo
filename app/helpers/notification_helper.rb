@@ -35,7 +35,7 @@ module NotificationHelper
     end
 
     if current_user == notification.subject
-      link_to "Your photo is still pending votes.", show_url
+      link_to "Your photo has been submitted for approval.", show_url
     elsif my_votes.blank?
       link_to "You have a pending photo to vote on.", show_url, class: "pending"
     elsif my_votes.first.approve

@@ -14,7 +14,7 @@ class PhotosController < ApplicationController
   def create
     @photo = Photo.new(params[:photo])
 
-    unless @photo.cell.board.user == current_user && @photo.save
+    unless @photo.cell.board.user == current_user && !@cell.board.game.end && @photo.save
       flash[:alert] = "Failed to upload file"
     end
 

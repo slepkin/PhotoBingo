@@ -33,9 +33,10 @@
   <%= image_tag @photo.img.url(:big) %>
 
   <% else %>
-  <% unless @cell.board.game.pending_votes(current_user).empty? %>
-    <alert>You cannot submit a photo until you have voted on all pending photos!</alert>
-  <% end %>
+    <% unless @cell.board.game.pending_votes(current_user).blank? %>
+      <alert>You cannot submit a photo until you have voted on all pending photos!</alert>
+    <% end %>
+    <% unless @cell.board.game.end %>
     <form action="<%= photos_url %>" method="post" enctype="multipart/form-data">
       <input type="hidden" name="authenticity_token"
         value="<%= form_authenticity_token %>">
@@ -46,6 +47,7 @@
 
       <input type="submit" value="Upload Photo">
     </form>
+    <% end %>
   <% end %>
 
 

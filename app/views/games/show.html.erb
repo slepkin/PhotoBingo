@@ -17,8 +17,8 @@
   </section>
 
   <% my_board = current_user.boards.find_by_game_id(@game.id) %>
-  <%= button_to "My Board", board_url(my_board), method: :get %><br>
-  <%= button_to "Quit Game", board_url(my_board), method: :delete,
+  <%= button_to "My Board", board_url(my_board), method: :get, class: "button" %><br>
+  <%= button_to "Quit Game", board_url(my_board), method: :delete, class: "button",
      data: { confirm: "Are you sure you wish to quit?\nThis is permanent!"}%><br>
 
 </section>

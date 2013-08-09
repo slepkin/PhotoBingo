@@ -36,6 +36,20 @@ html {
   font-family: 'helvetica', sans-serif;
 }
 
+.alert, alert {
+  color: red;
+  text-align: right;
+  font-size: 12px;
+}
+
+main {
+  background-color: rgb(160, 200, 200);
+  width: 900px;
+  margin: 20px auto;
+  padding: 10px;
+  border: 1px solid black;
+}
+
 nav {
   background-color: rgb(160, 200, 200);
 }
@@ -59,19 +73,19 @@ nav input, button {
   cursor: pointer;
 }
 
-input {
+ nav input {
   display: block;
   text-align: center;
   color: rgb(70, 130, 130);
 
 }
 
-input:hover, button:hover {
+ nav input:hover, button:hover {
   transition: color 1s;
   color: rgb(70, 130, 250);
 }
 
-input:active, button:active {
+ nav input:active, button:active {
   box-shadow: inset 0px 2px 10px black;
 }
 
@@ -108,7 +122,7 @@ cell {
   font-size: 20pt;
 }
 
-.game-attributes input[type="submit"] {
+.button {
   background-color: rgb(160, 200, 200);
   padding: 10px;
   border: 1px solid black;

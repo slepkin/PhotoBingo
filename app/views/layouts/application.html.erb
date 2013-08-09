@@ -23,10 +23,12 @@
     </ul>
   </nav>
 
-<%= yield %>
-
-<p class="alert"><%= flash[:alert] %></p>
-<p class="notice"><%= flash[:notice] %></p>
+  <main class="group">
+    <%= yield %>
+    <br>
+    <p class="alert"><%= flash[:alert] %></p>
+    <p class="notice"><%= flash[:notice] %></p>
+  </main>
 
 </body>
 </html>

@@ -74,7 +74,7 @@ class Board < ActiveRecord::Base
   end
 
   def destroy_game_if_empty
-    game.destroy if game.boards.empty?
+    game.destroy if game.boards.blank?
   end
 
 end
