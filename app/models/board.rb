@@ -31,7 +31,7 @@ class Board < ActiveRecord::Base
 
   def wins?
     coords_with_photos = cells.all(
-      joins: "INNER JOIN 'photos' ON cells.id = photos.cell_id",
+      joins: "INNER JOIN photos ON cells.id = photos.cell_id",
       conditions: "photos.status = 'approved'").
       map{|cell|[cell.x_coord, cell.y_coord]}
 
