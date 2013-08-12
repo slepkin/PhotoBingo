@@ -38,6 +38,9 @@ html {
 
 .alert, alert {
   color: red;
+}
+
+.notice, .alert, alert {
   text-align: right;
   font-size: 12px;
 }

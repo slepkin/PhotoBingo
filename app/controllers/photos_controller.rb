@@ -13,8 +13,10 @@ class PhotosController < ApplicationController
 
   def create
     @photo = Photo.new(params[:photo])
-    @game = @photo.game
-    @owner = @photo.user
+    #Apparently you can't use a :through association on an ibject unsaved to database
+    @game = @photo.cell.game
+    @owner = @photo.cell.user
+
 
     if @owner != current_user
       flash[:alert] = "This cell is not on your board."

@@ -19,7 +19,7 @@
   <ul>
   <% User.all.each do |user| %>
     <li>
-      <label for="<%= user.name %>"><%= user.name %></label>
+      <label for="<%= user.name %>"><%= user.name.capitalize  %></label>
       <input type="checkbox" name="game[user_ids][]" value="<%= user.id %>"
         id="<%= user.name %>">
     </li>

@@ -5,7 +5,7 @@ class Photo < ActiveRecord::Base
 
   belongs_to :cell
   has_one :board, through: :cell
-  has_one :game, through: :cell
+  has_one :game, through: :board
   has_one :user, through: :board
   has_many :notifications, dependent: :destroy
   has_many :votes, dependent: :destroy
