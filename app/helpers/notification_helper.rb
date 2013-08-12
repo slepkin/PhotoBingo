@@ -15,7 +15,7 @@ module NotificationHelper
 
     case notification.quality
     when "quit"
-      notice = "#{notification.subject.name} has quit the game."
+      notice = "#{notification.subject.name.capitalize} has quit the game."
     when "new"
       notice = pending_photo_notice(notification, show_url)
     when "accept"

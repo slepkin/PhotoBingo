@@ -15,6 +15,8 @@ class Photo < ActiveRecord::Base
     :small => "#{Cell::WIDTH}x#{Cell::WIDTH}"
   }
 
+  validates_presence_of :img
+
   after_create :notify_players
 
   def pending_votes?(user)
