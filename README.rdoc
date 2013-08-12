@@ -2,18 +2,20 @@ TODO:
 
 * styling...
 
-* link notifications to a board, instead of a subject AND a game
-  * Abandoned, since we want notification to stick around after a board is destroyed (user quits)
-
+* clean up references, given new extended associations
 * Add board_visits
   * _Newly_ accepted photos flash on grid!!!
 * Make pending_votes make fewer queries. Maybe a 'pending' column for boards
 * When a photo is discarded, leave the notification, but unlink in log
 * Make it impossible to manually quit after game end, but happen automatically after a week?
-* Approve any photo standing for a day
+* Approve any photo standing for a day (DJ)
+  * Ask Jonathan about why this isn't working
   * Make this timespan adjustable
 * Add instructions on main menu
   * Add link back to main menu from /games and /themes
+
+* Add tests (RSpec, Capybara)
+  * Check test from Rails assessment
 
 Possible things to use AJAX for:
   * Notifications (on game#show)

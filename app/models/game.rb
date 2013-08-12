@@ -13,14 +13,14 @@ class Game < ActiveRecord::Base
   validates :end, :inclusion => {:in => [true, false]}
 
   def new_notifications?(user)
-    last_visit = Visit.find_by_user_id_and_game_id(user.id, self.id)
+    last_visit = Visit.find_by_user_id_and_game_id(user.id, id)
     most_recent_notification &&
       (!last_visit || last_visit.updated_at < most_recent_notification.created_at)
   end
 
-  def pending_votes(user)
-    self.boards.where("user_id <> ?", user.id).map do |board|
-      board.pending_votes(user)
+  def pending_votes(voting_user)
+    boards.where("user_id <> ?", voting_user.id).map do |board|
+      board.pending_votes(voting_user)
     end.inject(:|)
   end
 

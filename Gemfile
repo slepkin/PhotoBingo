@@ -45,7 +45,10 @@ gem 'aws-sdk'
 gem 'figaro'
 
 #Changes tense, subject, plurality, etc. of a verb. Used by Notifications
-gem 'verbs'
+# gem 'verbs'
+
+# Schedule work to be done later, or in the background
+gem 'delayed_job_active_record'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

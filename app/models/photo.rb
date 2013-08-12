@@ -18,40 +18,42 @@ class Photo < ActiveRecord::Base
   validates_presence_of :img, :cell
   validates :status, inclusion: {in: ["approved", "rejected", "pending"]}
 
-  after_create :notify_players
+  after_create :notify_players, :auto_accept_in_a_day
 
-  def pending_votes?(user)
-    !cell.board.game.end &&
+  def pending_votes?(voting_user)
+    !game.end &&
     status == "pending" &&
-    votes.find_by_user_id(user.id).nil? &&
-    user.id != cell.board.user.id
+    votes.find_by_user_id(voting_user.id).nil? &&
+    voting_user.id != user.id
   end
 
   def check_status
     #This should run whenever a vote is placed
-    game = cell.board.game
-    vote_array = self.votes.pluck(:approve)
+    vote_array = votes.pluck(:approve)
     number_other_players = (game.boards.count - 1).to_f
     if vote_array.count(true) >= (number_other_players / 2).ceil
       update_attribute(:status, "approved")
-      notifications.create(subject_id: cell.board.user.id,
+      notifications.create(subject_id: user.id,
         game_id: game.id,
         quality: "accept")
-        cell.board.win_check
+        board.win_check
     elsif vote_array.count(false) >= (number_other_players / 2).floor
       update_attribute(:status, "rejected")
-      notifications.create(subject_id: cell.board.user.id,
+      notifications.create(subject_id: user.id,
         game_id: game.id,
         quality: "reject")
     end
   end
 
+  def auto_accept_in_a_day
+    update_attribute(:status, "approved")
+  end
+  handle_asynchronously :auto_accept_in_a_day, :run_at => Proc.new { 1.minutes.from_now }
+
   private
   def notify_players
-    board = cell.board
-    board.game.notifications.create(subject_id: board.user.id,
+    game.notifications.create(subject_id: user.id,
       quality: "new", photo_id: id)
-      #I'm worried that the photo doesn't know its primary key yet
   end
 
 end

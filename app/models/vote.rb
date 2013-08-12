@@ -11,7 +11,7 @@ class Vote < ActiveRecord::Base
 
   private
   def check_status_of_photo
-    self.photo.check_status
+    photo.check_status
   end
 
 end
