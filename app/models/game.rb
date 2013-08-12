@@ -12,8 +12,6 @@ class Game < ActiveRecord::Base
   validates_presence_of :theme
   validates :end, :inclusion => {:in => [true, false]}
 
-  #validate >1 user
-
   def new_notifications?(user)
     last_visit = Visit.find_by_user_id_and_game_id(user.id, self.id)
     most_recent_notification &&

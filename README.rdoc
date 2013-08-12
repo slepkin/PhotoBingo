@@ -12,6 +12,11 @@ TODO:
 * Add instructions on main menu
   * Add link back to main menu from /games and /themes
 
+Possible things to use AJAX for:
+  * Notifications (on game#show)
+  * Seems pretty unnecessary for everything else
+
+
 
 
 
