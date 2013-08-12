@@ -3,7 +3,10 @@ TODO:
 * styling...
 
 * link notifications to a board, instead of a subject AND a game
-* Add a marker on the board to show status of photo (filter or corner color)
+  * Abandoned, since we want notification to stick around after a board is destroyed (user quits)
+
+* Add board_visits
+  * _Newly_ accepted photos flash on grid!!!
 * Make pending_votes make fewer queries. Maybe a 'pending' column for boards
 * When a photo is discarded, leave the notification, but unlink in log
 * Make it impossible to manually quit after game end, but happen automatically after a week?

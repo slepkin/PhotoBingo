@@ -5,8 +5,19 @@ module BoardHelper
     if cell.photo.nil?
       cell.phrase && cell.phrase.body
     else
-      image_tag cell.photo.img.url(:small)
-      #Remember to set :small and :big tags, as in AA GitHub
+      photo = cell.photo
+      (image_tag photo.img.url(:small)) + marker_for(photo).html_safe
+    end
+  end
+
+  def marker_for(photo)
+    case photo.status
+    when "approved"
+      "<status-marker class='green'></status-marker>"
+    when "rejected"
+      "<status-marker class='red'></status-marker>"
+    when "pending"
+      "<status-marker class='yellow'></status-marker>"
     end
   end
 
