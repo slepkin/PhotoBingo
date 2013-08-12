@@ -3,7 +3,7 @@ class PhotosController < ApplicationController
 
   def destroy
     @photo = Photo.find(params[:id])
-    if @photo.cell.board.user == current_user
+    if @photo.user == current_user
       @photo.destroy
     else
       flash[:alert] = "Not your photo."
@@ -13,8 +13,16 @@ class PhotosController < ApplicationController
 
   def create
     @photo = Photo.new(params[:photo])
+    @game = @photo.game
+    @owner = @photo.user
 
-    unless @photo.cell.board.user == current_user && !@cell.board.game.end && @photo.save
+    if @owner != current_user
+      flash[:alert] = "This cell is not on your board."
+    elsif !@game.pending_votes(current_user).blank?
+      flash[:alert] = "You cannot submit a photo until you have voted on all pending photos!"
+    elsif @game.end
+      flash[:alert] = "The game is over."
+    elsif !@photo.save
       flash[:alert] = "Failed to upload file"
     end
 

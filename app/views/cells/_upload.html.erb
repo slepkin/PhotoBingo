@@ -1,0 +1,11 @@
+<form action="<%= photos_url %>" method="post" enctype="multipart/form-data">
+  <input type="hidden" name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+  <input type="hidden" name="photo[cell_id]" value="<%= cell.id %>">
+
+  <input type="file" name="photo[img]"><br>
+
+  <div class="buttons"><input type="submit" value="Upload Photo" class="button"></div>
+
+</form>

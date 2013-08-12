@@ -1,55 +1,30 @@
 <h2><%= @cell.phrase.body %></h2>
-<%= link_to "Back to My Board", board_url(@cell.board.game.boards.find_by_user_id(current_user.id)) %>
-<%= link_to "Back to This Board", board_url(@cell.board) if @cell.board.game.end %>
+<div class="group">
+  <%= link_to "Back to Game", game_url(@game), class: "button" %>
+  <%= link_to "Back to My Board", board_url(@game.boards.find_by_user_id(current_user.id)), class: "button" %>
+  <%= link_to "Back to This Board", board_url(@cell.board), class: "button" if @game_ended && !@is_owner %>
+</div>
 
 <section>
-  <% if @photo %>
+  <% if @photo_exists %>
     <h3>Status: <%= @photo.status.capitalize %></h3>
-    <% if @photo.cell.board.user == current_user %>
-      <%= button_to "Discard Photo", photo_url(@photo), method: :delete,
+    <% if @is_owner %>
+      <%= button_to "Discard Photo", photo_url(@photo), method: :delete, class: "button",
          data: { confirm: "Are you sure you wish to discard this photo?\nYou will lose any votes given for it!"}%><br>
     <% elsif @photo.pending_votes?(current_user) %>
-    <!-- These should really be partials -->
-      <form action="<%= votes_url %>" method="post">
-        <input type="hidden" name="authenticity_token"
-          value="<%= form_authenticity_token %>">
-        <input type="hidden" name="vote[photo_id]" value="<%= @photo.id %>">
-        <input type="hidden" name="vote[user_id]" value="<%= current_user.id %>">
-        <input type="hidden" name="vote[approve]" value="true">
-        <input type="submit" value="Approve">
-      </form>
-
-      <form action="<%= votes_url %>" method="post">
-        <input type="hidden" name="authenticity_token"
-          value="<%= form_authenticity_token %>">
-        <input type="hidden" name="vote[photo_id]" value="<%= @photo.id %>">
-        <input type="hidden" name="vote[user_id]" value="<%= current_user.id %>">
-        <input type="hidden" name="vote[approve]" value="false">
-        <input type="submit" value="Reject">
-      </form>
-
+      <%= render partial: "votes", locals: { photo: @photo } %>
     <% end %>
 
   <%= image_tag @photo.img.url(:big) %>
 
   <% else %>
-    <% unless @cell.board.game.pending_votes(current_user).blank? %>
-      <alert>You cannot submit a photo until you have voted on all pending photos!</alert>
-    <% end %>
-    <% unless @cell.board.game.end %>
-    <form action="<%= photos_url %>" method="post" enctype="multipart/form-data">
-      <input type="hidden" name="authenticity_token"
-        value="<%= form_authenticity_token %>">
-
-      <input type="hidden" name="photo[cell_id]" value="<%= @cell.id %>">
-
-      <input type="file" name="photo[img]"><br>
-
-      <input type="submit" value="Upload Photo">
-    </form>
+    <h3>No photo currently selected for this cell</h3>
+    <% unless @game_ended %>
+      <% if @game.pending_votes(current_user).blank? %>
+        <%= render partial: "upload", locals: { cell: @cell } %>
+      <% else %>
+        <%= flash.now[:alert] = "You cannot submit a photo until you have voted on all pending photos!" %>
+      <% end %>
     <% end %>
   <% end %>
-
-
 </section>
-

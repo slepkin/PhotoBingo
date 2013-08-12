@@ -1,0 +1,19 @@
+<votes class="group">
+  <form action="<%= votes_url %>" method="post">
+    <input type="hidden" name="authenticity_token"
+      value="<%= form_authenticity_token %>">
+    <input type="hidden" name="vote[photo_id]" value="<%= photo.id %>">
+    <input type="hidden" name="vote[user_id]" value="<%= current_user.id %>">
+    <input type="hidden" name="vote[approve]" value="true">
+    <input type="submit" value="Approve" class="button">
+  </form>
+
+  <form action="<%= votes_url %>" method="post">
+    <input type="hidden" name="authenticity_token"
+      value="<%= form_authenticity_token %>">
+    <input type="hidden" name="vote[photo_id]" value="<%= photo.id %>">
+    <input type="hidden" name="vote[user_id]" value="<%= current_user.id %>">
+    <input type="hidden" name="vote[approve]" value="false">
+    <input type="submit" value="Reject" class="button">
+  </form>
+</votes>

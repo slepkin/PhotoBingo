@@ -3,6 +3,8 @@ class Cell < ActiveRecord::Base
   attr_accessible :board_id, :phrase_id, :x_coord, :y_coord
 
   belongs_to :board
+  has_one :user, through: :board
+  has_one :game, through: :board
   belongs_to :phrase
   has_one :photo, dependent: :destroy
 

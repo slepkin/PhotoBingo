@@ -26,8 +26,9 @@
   <% end %>
   </ul>
 
-  <%= link_to "Cancel", games_url %>
-
-  <input type="submit" value="Create Game">
+  <div class="buttons"></div>
+    <%= link_to "Cancel", games_url, class: "button" %>
+    <input type="submit" value="Create Game" class="button">
+  </div>
 </form>
 
