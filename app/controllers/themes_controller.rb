@@ -15,7 +15,7 @@ class ThemesController < ApplicationController
     phrase_count = params[:theme][:phrases_attributes].count{|key,val| val[:body] != ""}
     p params[:theme][:phrases_attributes]
 
-    if phrase_count >= 16 (Board::WIDTH ** 2) @theme.save
+    if phrase_count >= (Board::WIDTH ** 2) && @theme.save
       redirect_to themes_url
     else
       flash.now[:alert] = "Make sure the theme has a name, and at least SIZE^2 phrases"

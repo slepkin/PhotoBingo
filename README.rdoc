@@ -4,7 +4,13 @@ TODO:
 
 * link notifications to a board, instead of a subject AND a game
 * Add a marker on the board to show status of photo (filter or corner color)
-* Make pending_votes make fewer queries
+* Make pending_votes make fewer queries. Maybe a 'pending' column for boards
+* When a photo is discarded, leave the notification, but unlink in log
+* Make it impossible to manually quit after game end, but happen automatically after a week?
+* Approve any photo standing for a day
+  * Make this timespan adjustable
+* Add instructions on main menu
+  * Add link back to main menu from /games and /themes
 
 
 
