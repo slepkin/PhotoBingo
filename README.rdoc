@@ -2,8 +2,8 @@ TODO:
 
 * styling...
 
-* Give error if try to submit photo with no image
 * link notifications to a board, instead of a subject AND a game
+* Add a marker on the board to show status of photo (filter or corner color)
 * Make pending_votes make fewer queries
 
 

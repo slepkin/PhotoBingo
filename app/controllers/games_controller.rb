@@ -11,10 +11,11 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.new(params[:game])
+    debugger
     if @game.save
       redirect_to game_url(@game)
     else
-      flash.now[:alert] = "Could not save boards and cells"
+      flash.now[:alert] = "Could not save game"
       render :new
     end
   end

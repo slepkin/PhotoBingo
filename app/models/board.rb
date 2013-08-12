@@ -3,9 +3,11 @@ class Board < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :game
-  has_many :cells, dependent: :destroy
+  has_many :cells, dependent: :destroy, inverse_of: :board
   accepts_nested_attributes_for :cells
   has_many :phrases, through: :cells #needed?
+
+  validates_presence_of :game, :user
 
   after_create :make_cells
   after_destroy :notify_other_players, :destroy_game_if_empty

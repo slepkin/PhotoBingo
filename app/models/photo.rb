@@ -7,15 +7,16 @@ class Photo < ActiveRecord::Base
   has_one :board, through: :cell
   has_one :game, through: :board
   has_one :user, through: :board
-  has_many :notifications, dependent: :destroy
-  has_many :votes, dependent: :destroy
+  has_many :notifications, dependent: :destroy, inverse_of: :photo
+  has_many :votes, dependent: :destroy, inverse_of: :photo
 
   has_attached_file :img, :styles => {
     :big => "600x600",
     :small => "#{Cell::WIDTH}x#{Cell::WIDTH}"
   }
 
-  validates_presence_of :img
+  validates_presence_of :img, :cell
+  validates :status, inclusion: {in: ["approved", "rejected", "pending"]}
 
   after_create :notify_players
 

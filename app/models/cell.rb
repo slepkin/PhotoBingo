@@ -6,7 +6,9 @@ class Cell < ActiveRecord::Base
   has_one :user, through: :board
   has_one :game, through: :board
   belongs_to :phrase
-  has_one :photo, dependent: :destroy
+  has_one :photo, dependent: :destroy, inverse_of: :cell
+
+  validates_presence_of :board, :phrase, :x_coord, :y_coord
 
   before_destroy :kill_phrase_if_orphan
 

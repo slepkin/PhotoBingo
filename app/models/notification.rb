@@ -6,6 +6,9 @@ class Notification < ActiveRecord::Base
   belongs_to :game
   belongs_to :photo
 
+  validates_presence_of :game, :subject
+  validates :quality, :inclusion => {in: ["quit", "new", "accept", "reject", "win"]}
+
   # def to_s_with_subject(user)
   #   #Make sure to adjust game/#/show
   #   if user == current_user

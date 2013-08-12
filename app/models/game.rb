@@ -2,12 +2,15 @@ class Game < ActiveRecord::Base
   attr_accessible :theme_id, :user_ids, :end
 
   belongs_to :theme
-  has_many :boards, dependent: :destroy
+  has_many :boards, dependent: :destroy, inverse_of: :game
   has_many :cells, through: :boards
   has_many :photos, through: :cells
   has_many :users, through: :boards
-  has_many :visits, dependent: :destroy
-  has_many :notifications, dependent: :destroy
+  has_many :visits, dependent: :destroy, inverse_of: :game
+  has_many :notifications, dependent: :destroy, inverse_of: :game
+
+  validates_presence_of :theme
+  validates :end, :inclusion => {:in => [true, false]}
 
   #validate >1 user
 
