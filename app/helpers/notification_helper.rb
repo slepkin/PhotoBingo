@@ -26,7 +26,7 @@ module NotificationHelper
       notice = "#{subject} won the game!"
     end
 
-    "<notice>#{notice}</notice><time>#{notification.created_at}</time>"
+    "<p class='group'><notice>#{notice}</notice><time>#{notification.created_at}</time></p>"
   end
 
   def pending_photo_notice(notification, show_url)
