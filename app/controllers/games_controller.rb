@@ -11,7 +11,7 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.new(params[:game])
-    debugger
+
     if @game.save
       redirect_to game_url(@game)
     else

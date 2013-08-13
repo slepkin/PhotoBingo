@@ -6,6 +6,7 @@ TODO:
 * Add board_visits
   * _Newly_ accepted photos flash on grid!!!
 * Make pending_votes make fewer queries. Maybe a 'pending' column for boards
+  * I don't think this is worth it, since a User's pending votes can be affected without any action on his part, in both directions.
 * When a photo is discarded, leave the notification, but unlink in log
 * Make it impossible to manually quit after game end, but happen automatically after a week?
 * Approve any photo standing for a day (DJ)

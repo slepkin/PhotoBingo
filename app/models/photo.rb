@@ -18,7 +18,8 @@ class Photo < ActiveRecord::Base
   validates_presence_of :img, :cell
   validates :status, inclusion: {in: ["approved", "rejected", "pending"]}
 
-  after_create :notify_players, :auto_accept_in_a_day
+  after_create :notify_players
+  after_create :auto_accept_in_a_day
 
   def pending_votes?(voting_user)
     !game.end &&
@@ -46,9 +47,10 @@ class Photo < ActiveRecord::Base
   end
 
   def auto_accept_in_a_day
+    p "Running auto_accept_in_a_day"
     update_attribute(:status, "approved")
   end
-  handle_asynchronously :auto_accept_in_a_day, :run_at => Proc.new { 1.minutes.from_now }
+  handle_asynchronously :auto_accept_in_a_day, :run_at => Proc.new { 10.seconds.from_now }
 
   private
   def notify_players
