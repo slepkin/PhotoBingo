@@ -12,6 +12,8 @@ end
 group :development do
   gem 'sqlite3'
   gem 'debugger'
+  gem 'rspec-rails'
+  gem 'capybara'
 end
 
 gem 'devise'

@@ -6,18 +6,19 @@ class Theme < ActiveRecord::Base
   accepts_nested_attributes_for :phrases, reject_if: :all_blank, allow_destroy: true
   has_many :games, inverse_of: :theme
   # validate at least 16 phrases
-  after_destroy :kill_phrases_if_orphan
+  after_destroy :destroy_orphan_phrases_else_nullify
 
   validates_presence_of :name, :user
 
   private
-  #When a theme dies, phrases are not deleted. We want them to be deleted iff they are not attached to any cells or theme
-  def kill_phrases_if_orphan
-    phrases.find(:all,
-      joins: "LEFT JOIN 'cells' ON phrases.id = cells.phrase_id",
-      group: "phrases.id",
-      having: "COUNT(cells.id) == 0").
-    destroy_all
+  #When a theme dies, phrases are not deleted. We want them to be deleted iff they are not attached to any cells or theme, and otherwise be nullified
+  def destroy_orphan_phrases_else_nullify
+    phrases_include_cells = phrases.joins("LEFT JOIN 'cells' ON phrases.id = cells.phrase_id").
+      group("phrases.id")
+    phrases_include_cells.having("COUNT(phrases.id == 0)").destroy_all
+    phrases_include_cells.having("COUNT(phrases.id >= 0)").update_all(theme_id: nil)
   end
+
+
 
 end

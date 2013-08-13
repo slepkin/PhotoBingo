@@ -1,12 +1,19 @@
 <h1>My Themes</h1>
 
 <!-- Later, restrict themes to their owners -->
+<section class="themes">
+  <ul>
+  <% Theme.all.each do |theme| %>
+    <li>
+      <%= link_to theme.name, edit_theme_url(theme) %>
+      <%= button_to "Delete", theme_url(theme), method: "delete",
+        data: { confirm: "Are you sure you wish to discard this theme?\nThis is permanent!"}%>
+    </li>
+  <% end %>
+  </ul>
+</section>
 
-<% Theme.all.each do |theme| %>
- <%= link_to theme.name, edit_theme_url(theme) %>
- <%= button_to "Delete", theme_url(theme), method: "delete",
-    data: { confirm: "Are you sure you wish to discard this theme?\nThis is permanent!"}%><br>
-<% end %>
-
-<a href="/" class="button">Main Menu</a>
-<a href="/themes/new" class="button">New Theme</a>
+<div class="buttons">
+  <a href="/" class="button">Main Menu</a>
+  <a href="/themes/new" class="button">New Theme</a>
+</div>

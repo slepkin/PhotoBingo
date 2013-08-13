@@ -27,7 +27,7 @@ class Cell < ActiveRecord::Base
 
   private
   def kill_phrase_if_orphan
-    phrase.destroy if phrase.theme.nil?
+    phrase.destroy if (phrase && phrase.theme.nil?)
   end
   #When a theme dies, phrases are not deleted. We want them to be deleted iff they are not attached to any cells or theme
 

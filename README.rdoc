@@ -2,7 +2,6 @@ TODO:
 
 * styling...
 
-* clean up references, given new extended associations
 * Add board_visits
   * _Newly_ accepted photos flash on grid!!!
 * Make pending_votes make fewer queries. Maybe a 'pending' column for boards
@@ -21,6 +20,8 @@ TODO:
 Possible things to use AJAX for:
   * Notifications (on game#show)
   * Seems pretty unnecessary for everything else
+
+* Move validations in theme creator into validation
 
 
 

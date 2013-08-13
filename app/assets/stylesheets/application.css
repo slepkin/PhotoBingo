@@ -14,7 +14,7 @@
 
 html, body, header, footer, section, article, div,
 strong, a, img, p, h1, h2, h3, time, ul, li, small, form, input
-button, input[type="submit"], button[type="submit"]{
+button, nav input[type="submit"], nav button {
   border: 0;
   padding: 0;
   margin: 0;
@@ -135,6 +135,7 @@ cell {
   box-shadow: 1px 1px 1px black;
   border-radius: 5px;
   margin: auto;
+  font-size: 12pt;
 }
 
 h3 {
@@ -155,11 +156,11 @@ ul {
   list-style: none;
 }
 
-.players {
+.players, .themes {
   padding-bottom: 20px;
 }
 
-.players li {
+.players li, .themes li {
   text-align: left;
 }
 
