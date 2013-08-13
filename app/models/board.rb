@@ -4,6 +4,7 @@ class Board < ActiveRecord::Base
   belongs_to :user
   belongs_to :game
   has_many :cells, dependent: :destroy, inverse_of: :board
+  has_many :photos, through: :cells
   accepts_nested_attributes_for :cells
   has_many :phrases, through: :cells #needed?
 

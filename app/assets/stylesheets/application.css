@@ -71,7 +71,7 @@ nav input, nav button, nav .button {
   width: 100%;
 }
 
- nav input, button, buttons .button {
+nav input, button, buttons .button {
   /*display: block;*/
   text-align: center;
   color: rgb(70, 130, 130);
@@ -83,8 +83,10 @@ nav input, nav button, nav .button {
 }
 
  nav input:hover, button:hover, .button:hover {
-  transition: color 1s;
+  transition: all 0.5s;
   color: rgb(70, 130, 250);
+  background-color: white;
+  cursor: pointer;
 }
 
  nav input:active, button:active, .button:active {

@@ -7,8 +7,12 @@
 <h3>Phrases (minimum 16)</h3>
 <ul id="phrase-list">
   <% 20.times do |i| %>
-    <input name="theme[phrases_attributes][<%= i %>][body]" class="phrase-field" value="<%= theme.phrases[i] && @theme.phrases[i].body %>">
-    <input type="hidden" name="theme[phrases_attributes][<%= i %>][id]" value="<%= theme.phrases[i] && @theme.phrases[i].id %>">
+    <input name="theme[phrases_attributes][<%= i %>][body]"
+      class="phrase-field"
+      value="<%= theme.phrases[i] && @theme.phrases[i].body %>"
+      id="pf#{i}">
+    <input type="hidden" name="theme[phrases_attributes][<%= i %>][id]"
+      value="<%= theme.phrases[i] && @theme.phrases[i].id %>">
   <% end %>
 </ul>
 

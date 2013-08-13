@@ -24,35 +24,31 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
 end
 
-def sign_up(username)
-  visit "/users/new"
-  fill_in "Username", with: username
-  fill_in "Password", with: 'abcdef'
+def sign_up(name,email)
+  visit "/users/sign_up"
+  fill_in "Name", with: name
+  fill_in "Email", with: email
+  fill_in "Password", with: 'password'
+  fill_in "Password confirmation", with: 'password'
   click_button 'Sign Up'
 end
 
-def sign_up_as_hello_world
-  sign_up("hello_world")
-end
-
-def sign_in(username)
-  visit "/session/new"
-  fill_in "Username", with: username
-  fill_in "Password", with: 'abcdef'
+def sign_in(email)
+  visit "/users/sign_in"
+  fill_in "Email", with: email
+  fill_in "Password", with: 'password'
   click_button 'Sign In'
 end
 
-def make_post(title = nil, body_text = nil)
-  title ||= "My First Post"
-  body_text ||= "The body of a post is rad."
+def make_theme(name = nil, phrases = nil)
+  name ||= "My First Theme"
+  phrases ||= [0...16].map{|x| x.to_s }
 
-  visit "/posts/new"
-  fill_in 'Title', with: title
-  fill_in 'Body', with: body_text
-  click_button "Create New Post"
+  visit "/themes/new"
+  fill_in 'Name', with: title
+  phrases.each_with_index do |phrase,index|
+    fill_in 'pf#{index}', with: phrase
+  end
+  click_button "Create Theme"
 end
 
-def add_tag
-  fill_in 'Tag Name', with: 'taggerific'
-  click_button 'Add Tag'
-end

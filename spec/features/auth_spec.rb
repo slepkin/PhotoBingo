@@ -2,20 +2,22 @@ require 'spec_helper'
 
 feature "Sign up" do
   before :each do
-    visit "/users/new"
+    visit "/users/sign_up"
   end
 
   it "has a user sign up page" do
-    page.should have_content "Sign Up"
+    page.should have_content "Sign up"
   end
 
-  it "takes a username and password" do
-    page.should have_content "Username"
+  it "takes a name, email, password, and confirmation" do
+    page.should have_content "Name"
+    page.should have_content "Email"
     page.should have_content "Password"
+    page.should have_content "Password confirmation"
   end
 
   it "validates the presence of the user's username and password" do
-    fill_in "Username", with: 'hello_world'
+    fill_in "Name", with: 'hello_world'
     click_button 'Sign Up'
     page.should have_content 'Sign Up'
   end

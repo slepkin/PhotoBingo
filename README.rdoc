@@ -6,6 +6,7 @@ TODO:
   * _Newly_ accepted photos flash on grid!!!
 * Make pending_votes make fewer queries. Maybe a 'pending' column for boards
   * I don't think this is worth it, since a User's pending votes can be affected without any action on his part, in both directions.
+* Associate visits with a board, and clean up auto_accept_after_a_day
 * When a photo is discarded, leave the notification, but unlink in log
 * Make it impossible to manually quit after game end, but happen automatically after a week?
 * Approve any photo standing for a day (DJ)
@@ -13,15 +14,20 @@ TODO:
   * Make this timespan adjustable
 * Add instructions on main menu
   * Add link back to main menu from /games and /themes
+* Make button to add more spaces for phrases in a theme
 
 * Add tests (RSpec, Capybara)
-  * Check test from Rails assessment
+  * Integration test(s)
+  * Unit tests _only_ work with models. Hooray!
 
-Possible things to use AJAX for:
+* Possible things to use AJAX for:
   * Notifications (on game#show)
-  * Seems pretty unnecessary for everything else
 
 * Move validations in theme creator into validation
+  * Re-factor it when you do this
+
+* Check why destruction of games doesn't work
+
 
 
 
