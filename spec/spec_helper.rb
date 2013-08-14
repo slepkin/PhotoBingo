@@ -52,3 +52,7 @@ def make_theme(name = nil, phrases = nil)
   click_button "Create Theme"
 end
 
+def random_string
+  (0...50).map{ ('a'..'z').to_a[rand(26)] }.join
+end
+

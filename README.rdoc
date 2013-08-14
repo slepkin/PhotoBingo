@@ -8,7 +8,9 @@ betterspecs.org
 
 TODO:
 
-* styling...
+* styling...'
+
+* *validate multiple players! Quit if fewer!*
 
 * Add board_visits
   * _Newly_ accepted photos flash on grid!!!
@@ -27,7 +29,9 @@ TODO:
 
 * Add tests (RSpec, Capybara)
   * Integration test(s)
-  * Why not put `rake db:test:prepare` at top of spec file?
+  * Only test public methods and custom validations
+  * Why do I need to run `rake db:test:prepare` before `bundle exec rspec spec/models`?
+  * How do I change order tests are run?
 
 * Possible things to use AJAX for:
   * Notifications (on game#show)
