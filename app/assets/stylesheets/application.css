@@ -14,7 +14,7 @@
 
 html, body, header, footer, section, article, div,
 strong, a, img, p, h1, h2, h3, time, ul, li, small, form, input
-button, nav input[type="submit"], nav button {
+button, nav input[type="submit"] {
   border: 0;
   padding: 0;
   margin: 0;
@@ -61,35 +61,38 @@ nav > ul {
   padding: 0;
   list-style: none;
   box-shadow: 0px 2px 10px black;
+  display: block;
 }
 
 nav > ul > li {
   float: left;
+  display: block;
 }
 
 nav input, nav button, nav .button {
   width: 100%;
 }
 
-nav input, button, buttons .button {
+nav input, button, .buttons .button {
   /*display: block;*/
-  text-align: center;
+/*  text-align: center;
   color: rgb(70, 130, 130);
   background-color: rgb(160, 200, 200);
   cursor: pointer;
   font-size: 22px;
   padding-top: 10px;
   padding-bottom: 10px;
+  border-radius: 0;*/
 }
 
- nav input:hover, button:hover, .button:hover {
+.button:hover {
   transition: all 0.5s;
   color: rgb(70, 130, 250);
   background-color: white;
   cursor: pointer;
 }
 
- nav input:active, button:active, .button:active {
+.button:active {
   box-shadow: inset 0px 2px 10px black;
 }
 
@@ -136,8 +139,21 @@ cell {
   border: 1px solid black;
   box-shadow: 1px 1px 1px black;
   border-radius: 5px;
-  margin: auto;
+  /*margin: auto;*/
   font-size: 12pt;
+}
+
+nav .button {
+  padding: 10px 0 10px 0;
+  /*width: 100%;*/
+  border-radius: 0;
+  border: 0;
+  box-shadow: 0 0 0;
+  display: block;
+}
+
+nav a {
+  text-align: center;
 }
 
 h3 {
