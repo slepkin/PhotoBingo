@@ -20,7 +20,7 @@ class PhotosController < ApplicationController
 
     if @owner != current_user
       flash[:alert] = "This cell is not on your board."
-    elsif !@game.pending_votes(current_user).blank?
+    elsif @game.pending_votes(current_user).present?
       flash[:alert] = "You cannot submit a photo until you have voted on all pending photos!"
     elsif @game.end
       flash[:alert] = "The game is over."

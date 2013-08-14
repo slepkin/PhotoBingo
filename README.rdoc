@@ -22,6 +22,7 @@ TODO:
 
 * Possible things to use AJAX for:
   * Notifications (on game#show)
+  * Adding players to game, on create
 
 * Move validations in theme creator into validation
   * Re-factor it when you do this

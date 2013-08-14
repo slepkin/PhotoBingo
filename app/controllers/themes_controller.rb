@@ -34,7 +34,7 @@ class ThemesController < ApplicationController
     #Mark empty fields to destroy orphan phrases, or nullify those with a cell still attached
     phrase_array = params[:theme][:phrases_attributes]
     phrase_array.each do |index, phrase|
-      phrase_array[index][:_destroy] = true if (phrase[:body]=="" && !phrase[:id].blank?)
+      phrase_array[index][:_destroy] = true if (phrase[:body]=="" && phrase[:id].present?)
     end
 
     phrase_count = phrase_array.count{|key,val| val[:body] != ""}
