@@ -10,8 +10,8 @@ feature "Sign up" do
   end
 
   it "takes a name, email, password, and confirmation" do
-    page.should have_content "Name"
-    page.should have_content "Email"
+    page.should have_content "name"
+    page.should have_content "email"
     page.should have_content "Password"
     page.should have_content "Password confirmation"
   end

@@ -1,5 +1,3 @@
-require_relative '../../lib/exceptions/object_has_errors.rb'
-
 class ThemesController < ApplicationController
   before_filter :authenticate_user!
 

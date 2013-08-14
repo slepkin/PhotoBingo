@@ -1,5 +1,3 @@
-require_relative '../../lib/exceptions/object_has_errors.rb'
-
 class Theme < ActiveRecord::Base
   attr_accessible :name, :user_id, :phrases_attributes
 
