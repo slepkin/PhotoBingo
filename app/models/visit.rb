@@ -11,7 +11,7 @@ class Visit < ActiveRecord::Base
 
   def auto_accept_after_a_day
     photos = user.boards.find_by_game_id(game_id).photos
-    photos.where("created_at < (?)", Time.now - 1.day).update_all(status: "approved")
+    photos.where("photos.created_at < (?)", Time.now - 1.day).update_all(status: "approved")
   end
 
 end

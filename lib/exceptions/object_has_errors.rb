@@ -1,0 +1,2 @@
+class ObjectHasErrors < StandardError
+end

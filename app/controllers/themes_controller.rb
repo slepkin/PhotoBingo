@@ -1,3 +1,5 @@
+require_relative '../../lib/exceptions/object_has_errors.rb'
+
 class ThemesController < ApplicationController
   before_filter :authenticate_user!
 
@@ -14,10 +16,11 @@ class ThemesController < ApplicationController
     @theme.user_id = current_user.id
     phrase_count = params[:theme][:phrases_attributes].count{|key,val| val[:body] != ""}
 
-    if phrase_count >= (Board::CARDINAL ** 2) && @theme.save
+    if @theme.save
       redirect_to themes_url
     else
-      flash.now[:alert] = "Make sure the theme has a name, and at least 16 phrases"
+      debugger
+      flash.now[:alert] = @theme.errors.full_messages.join("\n")
       render :new
     end
   end
@@ -37,28 +40,34 @@ class ThemesController < ApplicationController
       phrase_array[index][:_destroy] = true if (phrase[:body]=="" && phrase[:id].present?)
     end
 
-    phrase_count = phrase_array.count{|key,val| val[:body] != ""}
+    # phrase_count = phrase_array.count{|key,val| val[:body] != ""}
 
-    if !@theme.phrases.joins(:cells).blank?
-      flash[:alert] = "A theme can only be edited if not in use in a game."
+    if current_user != @theme.user
+      flash[:alert] = "That's not your theme."
       redirect_to themes_url
-    elsif phrase_count >= (Board::CARDINAL ** 2) && @theme.update_attributes(params[:theme])
-      p @theme.errors
+    elsif @theme.update_attributes(params[:theme])
       redirect_to themes_url
     else
-      flash.now[:alert] = "Make sure the theme has a name, and at least 16 phrases"
+      flash.now[:alert] = @theme.errors.full_messages.join("\n")
       render :edit
     end
   end
 
   def destroy
     @theme = Theme.find(params[:id])
-    if @theme.user == current_user
-      @theme.destroy
+
+    if current_user == @theme.user
+      begin
+        @theme.destroy
+      rescue StandardError => e
+        flash[:alert] = e.message
+      ensure
+        redirect_to :back
+      end
     else
-      flash[:alert] = "You are not the author if this theme."
+      flash[:alert] = "That's not your theme."
+      redirect_to themes_url
     end
-    redirect_to :back
   end
 
 

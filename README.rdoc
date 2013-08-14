@@ -1,3 +1,6 @@
+include TODO, features, technology used
+
+
 TODO:
 
 * styling...
@@ -16,9 +19,12 @@ TODO:
   * Add link back to main menu from /games and /themes
 * Make button to add more spaces for phrases in a theme
 
+* Throw away folders you're not using
+
 * Add tests (RSpec, Capybara)
   * Integration test(s)
   * Unit tests _only_ work with models. Hooray!
+  * Use betterspecs.org
 
 * Possible things to use AJAX for:
   * Notifications (on game#show)
@@ -26,6 +32,7 @@ TODO:
 
 * Move validations in theme creator into validation
   * Re-factor it when you do this
+  * This might be unfeasible, since we can't validate destruction
 
 * Check why destruction of games doesn't work
 
