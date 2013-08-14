@@ -17,6 +17,8 @@ class Photo < ActiveRecord::Base
 
   validates_presence_of :img, :cell
   validates :status, inclusion: {in: ["approved", "rejected", "pending"]}
+  validate :game_not_end, on: :create
+
 
   after_create :notify_players
 
@@ -49,6 +51,10 @@ class Photo < ActiveRecord::Base
   def notify_players
     game.notifications.create(subject_id: user.id,
       quality: "new", photo_id: id)
+  end
+
+  def game_not_end
+    errors.add(:game, "has ended.") if game.end
   end
 
 end

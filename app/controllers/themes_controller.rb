@@ -14,12 +14,10 @@ class ThemesController < ApplicationController
   def create
     @theme = Theme.new(params[:theme])
     @theme.user_id = current_user.id
-    phrase_count = params[:theme][:phrases_attributes].count{|key,val| val[:body] != ""}
 
     if @theme.save
       redirect_to themes_url
     else
-      debugger
       flash.now[:alert] = @theme.errors.full_messages.join("\n")
       render :new
     end
@@ -29,8 +27,6 @@ class ThemesController < ApplicationController
     @theme = Theme.find(params[:id])
   end
 
-  # Restrict theme editing to theme owner?
-
   def update
     @theme = Theme.find(params[:theme][:id])
 
@@ -39,8 +35,6 @@ class ThemesController < ApplicationController
     phrase_array.each do |index, phrase|
       phrase_array[index][:_destroy] = true if (phrase[:body]=="" && phrase[:id].present?)
     end
-
-    # phrase_count = phrase_array.count{|key,val| val[:body] != ""}
 
     if current_user != @theme.user
       flash[:alert] = "That's not your theme."

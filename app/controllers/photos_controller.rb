@@ -13,19 +13,15 @@ class PhotosController < ApplicationController
 
   def create
     @photo = Photo.new(params[:photo])
-    #Apparently you can't use a :through association on an object unsaved to database
     @game = @photo.cell.game
     @owner = @photo.cell.user
-
 
     if @owner != current_user
       flash[:alert] = "This cell is not on your board."
     elsif @game.pending_votes(current_user).present?
       flash[:alert] = "You cannot submit a photo until you have voted on all pending photos!"
-    elsif @game.end
-      flash[:alert] = "The game is over."
     elsif !@photo.save
-      flash[:alert] = "Failed to upload file"
+      flash[:alert] = @photo.errors.full_messages.join("\n")
     end
 
     redirect_to cell_url(params[:photo][:cell_id])
