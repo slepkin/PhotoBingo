@@ -20,6 +20,9 @@ PhotoBingo::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  # From https://github.com/appacademy/lightning-talks/blob/master/asset-pipeline.md
+  config.assets.initialize_on_precompile = false
+
   #From AA GitHub:
   # This one has nothing to do with Devise, actually. You need to do this anytime you use Heroku. When the asset pipeline compiles your assets, it will first try to initialize a connection to your database. Heroku will not let you do this; it wants to compile your assets before it connects to the DB. Luckily, this is fine since there's no reason you should touch the DB during asset compilation.
   config.assets.initialize_on_precompile = false

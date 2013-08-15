@@ -10,6 +10,7 @@ PhotoBingo::Application.routes.draw do
   resources :boards, only: [:show, :destroy]
   resources :cells, only: :show
   resources :votes, only: :create
+  resources :phrases, only: :new
 
 
   # The priority is based upon order of creation:

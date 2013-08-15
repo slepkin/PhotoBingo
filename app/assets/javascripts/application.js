@@ -12,4 +12,17 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require_tree
+
+$(document).ready(function() {
+  $('#more-phrases').click(function(){
+    var initial = $('#phrase-list li').length;
+    $.get({
+      url: "/phrases/new",
+      success: function(listItem) {
+        var parsedListItem = $(listItem)
+        $('#phrase-list').append()
+      }
+    })
+  })
+}

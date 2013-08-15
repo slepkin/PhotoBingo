@@ -11,7 +11,7 @@ class Theme < ActiveRecord::Base
 
   validates_presence_of :name, :user
   validate :phrases_unavailable, on: :update
-  validate :sixteen_phrases
+  validate :sixteen_phrases, on: :create
 
   private
   #When a theme dies, phrases are not deleted. We want them to be deleted iff they are not attached to any cells or theme, and otherwise be nullified
@@ -23,6 +23,7 @@ class Theme < ActiveRecord::Base
   end
 
   def sixteen_phrases
+    #This only works for create, since it examines the object in the database :(
     if phrases.length < 16
       errors.add(:theme, "must have at least 16 phrases.")
     end

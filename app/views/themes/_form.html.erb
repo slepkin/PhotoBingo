@@ -5,14 +5,11 @@
 
 <!-- When implementing AJAX, add button to add 3 more fields -->
 <h3>Phrases (minimum 16)</h3>
-<ul id="phrase-list">
-  <% 20.times do |i| %>
-    <input name="theme[phrases_attributes][<%= i %>][body]"
-      class="phrase-field"
-      value="<%= theme.phrases[i] && @theme.phrases[i].body %>"
-      id="pf#{i}">
-    <input type="hidden" name="theme[phrases_attributes][<%= i %>][id]"
-      value="<%= theme.phrases[i] && @theme.phrases[i].id %>">
+<ul id="phrase-list" class="group">
+  <% phrase_num.times do |i| %>
+    <%= render partial: "phrase_field", locals: { id: theme.phrases[i] && theme.phrases[i].id,
+                                                  body: theme.phrases[i] && theme.phrases[i].body,
+                                                  index: i} %>
   <% end %>
 </ul>
 

@@ -207,3 +207,7 @@ status-marker {
 #grid .red {
   background-color: red;
 }
+
+#phrase-list li {
+  float: left;
+}

@@ -3,6 +3,6 @@
 <form action="<%= theme_url(@theme) %>" method="post">
   <input type="hidden" name="_method" value="put">
   <input type="hidden" name="theme[id]" value="<%= @theme.id %>">
-  <%= render partial: "form", locals: {theme: @theme} %>
+  <%= render partial: "form", locals: {theme: @theme, phrase_num: @theme.phrases.length} %>
   <input type=submit value="Update Theme" class="button">
 </form>
