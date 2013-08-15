@@ -3,7 +3,7 @@
 <!-- Later, restrict themes to their owners -->
 <section class="themes">
   <ul>
-  <% Theme.all.each do |theme| %>
+  <% current_user.themes.each do |theme| %>
     <li>
       <%= link_to theme.name, edit_theme_url(theme) %>
       <%= button_to "Delete", theme_url(theme), method: "delete", class: "button",

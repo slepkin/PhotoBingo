@@ -76,17 +76,6 @@ nav input, nav button, nav .button {
   width: 100%;
 }
 
-nav input, button, .buttons .button {
-  /*display: block;*/
-/*  text-align: center;
-  color: rgb(70, 130, 130);
-  background-color: rgb(160, 200, 200);
-  cursor: pointer;
-  font-size: 22px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-radius: 0;*/
-}
 
 .button:hover {
   transition: all 0.5s;
@@ -100,12 +89,12 @@ nav input, button, .buttons .button {
 }
 
 .big-nav {
-  width: 39%;
+  width: 400px;
   border-right: 1px solid rgb(70, 130, 130);
 }
 
 .small-nav {
-  width: 19%;
+  width: 118px;
 }
 
 h1, h2 {

@@ -18,18 +18,14 @@ TODO:
 * Add instructions on main menu
   * Add link back to main menu from /games and /themes
 
-*Validate one vote per photo/user pair
-
-
 * Throw away folders you're not using
 
 * Add tests (RSpec, Capybara)
   * Integration test(s)
   * Only test public methods and custom validations
-  * Why do I need to run `rake db:test:prepare` before `bundle exec rspec spec/models`?
-  * How do I change order tests are run?
 
-* Possible things to use AJAX for:
+* Possible things to use JS for:
+  * Refresh boards#show, games#show, and games#index every minute
   * Make button to add more spaces for phrases in a theme
   * Notifications (on game#show)
   * Adding players to game, on create
