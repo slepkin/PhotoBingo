@@ -18,7 +18,7 @@ class Board < ActiveRecord::Base
   BORDER = 1 #actual border is double this
 
   def pending_votes(user)
-    self.cells.map { |cell| cell.pending_votes(user) }.select{|photo| photo }
+    self.photos.select { |photo| photo.pending_votes?(user) }
   end
 
   def cell_at(x_coord,y_coord)
@@ -53,7 +53,6 @@ class Board < ActiveRecord::Base
     return true if (coords_with_photos.select{|coord| coord[0] + coord[1] == CARDINAL-1 }.length >= CARDINAL)
 
     #Check for win by player forfeit
-    debugger
     return true if game.users == [user]
 
     false

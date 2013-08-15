@@ -29,3 +29,5 @@ TODO:
   * Make button to add more spaces for phrases in a theme
   * Notifications (on game#show)
   * Adding players to game, on create
+
+* can only create games I'm in
