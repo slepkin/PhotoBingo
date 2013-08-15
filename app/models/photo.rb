@@ -54,7 +54,9 @@ class Photo < ActiveRecord::Base
   end
 
   def game_not_end
-    errors.add(:game, "has ended.") if game.end
+    debugger
+    errors.add(:game, "has ended.") if board.game.end
+    #Why doesn't game.end work?
   end
 
 end
