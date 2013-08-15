@@ -1,7 +1,6 @@
 class Notification < ActiveRecord::Base
   attr_accessible :game_id, :subject_id, :quality, :photo_id
 
-
   belongs_to :subject, class_name: "User"
   belongs_to :game
   belongs_to :photo

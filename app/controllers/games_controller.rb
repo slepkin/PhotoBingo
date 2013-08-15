@@ -15,7 +15,7 @@ class GamesController < ApplicationController
     if @game.save
       redirect_to game_url(@game)
     else
-      flash.now[:alert] = "Could not save game"
+      flash.now[:alert] = @game.errors.full_messages.join("\n")
       render :new
     end
   end

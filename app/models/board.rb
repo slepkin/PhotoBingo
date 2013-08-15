@@ -11,7 +11,7 @@ class Board < ActiveRecord::Base
   validates_presence_of :game, :user
 
   after_create :make_cells
-  after_destroy :notify_other_players, :destroy_game_if_empty
+  after_destroy :notify_other_players, :destroy_game_if_empty, :end_game_if_one_player
 
   CARDINAL = 4
   WIDTH = 800
@@ -27,12 +27,14 @@ class Board < ActiveRecord::Base
 
   def win_check
     if wins?
-      game.update_attribute(:end, true) #Migrate column
+      game.update_attribute(:end, true)
       user.notifications.create(game_id: game.id, quality: "win")
     end
   end
 
   def wins?
+    return false if game.end
+
     coords_with_photos = cells.all(
       joins: "INNER JOIN photos ON cells.id = photos.cell_id",
       conditions: "photos.status = 'approved'").
@@ -49,6 +51,10 @@ class Board < ActiveRecord::Base
 
     #Check for antidiagonal win
     return true if (coords_with_photos.select{|coord| coord[0] + coord[1] == CARDINAL-1 }.length >= CARDINAL)
+
+    #Check for win by player forfeit
+    debugger
+    return true if game.users == [user]
 
     false
   end
@@ -78,6 +84,11 @@ class Board < ActiveRecord::Base
 
   def destroy_game_if_empty
     game.destroy if game.boards.blank?
+  end
+
+  def end_game_if_one_player
+    #Check for win by player forfeit
+    game.boards.first.win_check if game.users.length == 1
   end
 
 end

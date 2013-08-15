@@ -8,22 +8,18 @@ betterspecs.org
 
 TODO:
 
-* styling...'
+* styling...
 
-* *validate multiple players! Quit if fewer!*
-
-* Add board_visits
-  * _Newly_ accepted photos flash on grid!!!
-* Make pending_votes make fewer queries. Maybe a 'pending' column for boards
-  * I don't think this is worth it, since a User's pending votes can be affected without any action on his part, in both directions.
 * Associate visits with a board, and clean up auto_accept_after_a_day
 * When a photo is discarded, leave the notification, but unlink in log
-* Make it impossible to manually quit after game end, but happen automatically after a week?
-* Approve any photo standing for a day (DJ)
-  * Make this timespan adjustable
+  * This would be misleading if photo is pending
+
+* Ensure tutorial mentions any photo standing for a day is approved
 * Add instructions on main menu
   * Add link back to main menu from /games and /themes
-* Make button to add more spaces for phrases in a theme
+
+*Validate one vote per photo/user pair
+
 
 * Throw away folders you're not using
 
@@ -34,7 +30,6 @@ TODO:
   * How do I change order tests are run?
 
 * Possible things to use AJAX for:
+  * Make button to add more spaces for phrases in a theme
   * Notifications (on game#show)
   * Adding players to game, on create
-
-* Check why destruction of games doesn't work

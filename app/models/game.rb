@@ -11,6 +11,7 @@ class Game < ActiveRecord::Base
 
   validates_presence_of :theme
   validates :end, :inclusion => {:in => [true, false]}
+  validate :two_players
 
   def new_notifications?(user)
     last_visit = Visit.find_by_user_id_and_game_id(user.id, id)
@@ -27,6 +28,10 @@ class Game < ActiveRecord::Base
   private
   def most_recent_notification
     self.notifications.order("created_at").last
+  end
+
+  def two_players
+    errors.add(:game, "must have multiple players.") if users.length < 2
   end
 
 

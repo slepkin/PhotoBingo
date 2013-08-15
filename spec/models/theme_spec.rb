@@ -1,11 +1,13 @@
 require 'spec_helper'
 
 describe Theme do
-  user = User.create!(:name => "tester", :email => "tester@blah.com",
-    :password => "password", :password_confirmation => "password")
-#Use Factory Girl for this
+    before(:all) do
+    user = User.create!(:name => "tester", :email => "tester@blah.com",
+      :password => "password", :password_confirmation => "password")
+  #Use Factory Girl for this
 
-  theme = Theme.new(name: "test theme", user_id: user.id)
+    theme = Theme.new(name: "test theme", user_id: user.id)
+  end
 
   describe ".new" do
 
