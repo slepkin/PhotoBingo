@@ -1,15 +1,16 @@
 <h1>My Games</h1>
-
+<ul class="group">
 <% @games.each do |game| %>
 
   <% game_name = game.theme.name +
     " with " +
     game.users.map{|user| user.name.capitalize }.join(", ") %>
-
-  <%= link_to game_name, game_url(game) %>
-  <%= "<alert>New Notifications!</alert>".html_safe if game.new_notifications?(current_user) %>
-  <br>
+  <li class='left button small-button'>
+    <%= link_to game_name, game_url(game) %><br>
+    <%= "<alert>New Notifications!</alert>".html_safe if game.new_notifications?(current_user) %>
+  </li>
 <% end %>
+</ul>
 
 <div class="buttons">
   <a href="/" class="button">Main Menu</a>

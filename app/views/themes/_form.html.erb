@@ -5,7 +5,7 @@
 
 <!-- When implementing AJAX, add button to add 3 more fields -->
 <h3>Phrases (minimum 16)</h3>
-<button id="more-phrases" class="button">Add More Phrases</button>
+<button id="more-phrases" class="button small-button">Add More Phrases</button>
 <ul id="phrase-list" class="group">
   <% phrase_num.times do |i| %>
     <%= render partial: "phrase_field", locals: { id: theme.phrases[i] && theme.phrases[i].id,

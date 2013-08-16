@@ -5,7 +5,7 @@
     <h3>Players:</h3>
     <ul>
     <% @game.users.each do |user| %>
-      <li>
+      <li class="button small-button">
       <% if @game.end %>
         <%= link_to user.name.capitalize, board_url(@game.boards.find_by_user_id(user.id)) %>
       <% else %>
@@ -29,7 +29,7 @@
 <section class="notifications right">
   <h3>Notifications</h3>
   <ul>
-  <% @game.notifications.order("created_at").each do |notification| %>
+  <% @game.notifications.order("created_at DESC").each do |notification| %>
     <li>
       <%= to_html(notification).html_safe %>
     </li>

@@ -24,6 +24,6 @@ class PhotosController < ApplicationController
       flash[:alert] = @photo.errors.full_messages.join("\n")
     end
 
-    redirect_to cell_url(params[:photo][:cell_id])
+    redirect_to board_url(@photo.board)
   end
 end

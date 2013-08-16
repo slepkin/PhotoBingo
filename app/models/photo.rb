@@ -32,7 +32,7 @@ class Photo < ActiveRecord::Base
   def check_status
     #This should run whenever a vote is placed
     vote_array = votes.pluck(:approve)
-    debugger
+
     number_other_players = (game.boards.length - 1).to_f
     if vote_array.count(true) >= (number_other_players / 2).ceil
       update_attribute(:status, "approved")
@@ -56,7 +56,6 @@ class Photo < ActiveRecord::Base
 
   def game_not_end
     errors.add(:game, "has ended.") if board.game.end
-    #Why doesn't game.end work?
   end
 
 end

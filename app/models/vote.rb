@@ -2,6 +2,9 @@ class Vote < ActiveRecord::Base
   attr_accessible :user_id, :photo_id, :approve #a boolean
 
   belongs_to :photo
+  has_one :cell, through: :photo
+  has_one :board, through: :cell
+  has_one :game, through: :board
   belongs_to :user
 
   validates_presence_of :user, :photo
