@@ -23,13 +23,7 @@ TODO:
 
 * Possible things to use JS for:
   * Refresh boards#show, games#show, and games#index every minute
-  * Make button to add more spaces for phrases in a theme
-    * Make sure that when re-rendering, add enough fields to fit phrases
   * Notifications (on game#show)
   * Adding players to game, on create
 
 * can only create games I'm in?
-
-* Change themes#update to validate 16 phrases
-
-* finish jquery stuff to replace assign index.

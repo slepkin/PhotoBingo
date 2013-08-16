@@ -33,10 +33,13 @@ class ThemesController < ApplicationController
     phrase_array.each do |index, phrase|
       phrase_array[index][:_destroy] = true if (phrase[:body]=="" && phrase[:id].present?)
     end
-
+    debugger
     if current_user != @theme.user
       flash[:alert] = "That's not your theme."
       redirect_to themes_url
+    elsif phrase_array.values.count { |phrase| phrase[:body] != "" } < 16
+      flash.now[:alert] = "Theme must have at least 16 phrases."
+      render :edit
     elsif @theme.update_attributes(params[:theme])
       redirect_to themes_url
     else
