@@ -8,6 +8,8 @@ betterspecs.org
 
 TODO:
 
+* Implement New Relic to ping
+
 * Associate visits with a board, and clean up auto_accept_after_a_day
 * When a photo is discarded, leave the notification, but unlink in log
   * This would be misleading if photo is pending
