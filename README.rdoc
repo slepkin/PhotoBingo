@@ -1,31 +1,4 @@
 include TODO, features, technology used
 
-
-Reference for Rspec:
-https://github.com/rspec/rspec-expectations/blob/master/Should.md
-http://rubydoc.info/gems/rspec-expectations/RSpec/Expectations
-betterspecs.org
-
-TODO:
-
-* Implement New Relic to ping
-
-* Associate visits with a board, and clean up auto_accept_after_a_day
-* When a photo is discarded, leave the notification, but unlink in log
-  * This would be misleading if photo is pending
-
-* Add instructions on main menu
-  * Ensure tutorial mentions any photo standing for a day is approved
-
-* Throw away folders you're not using
-
-* Add tests (RSpec, Capybara)
-  * Integration test(s)
-  * Only test public methods and custom validations
-
-* Possible things to use JS for:
-  * Refresh boards#show, games#show, and games#index every minute
-  * Notifications (on game#show)
-  * Adding players to game, on create
-
-* can only create games I'm in?
+# DESCRIPTION
+Photo Bingo is a bit of a mix between Apples to Apples, and casual social games like Words with Friends. I envision it as a mobile game, though it is obviously not currently implemented as one. A player selects (or makes) a theme, which contains a bunch of related phrases. For example, the “Cars” theme may contain many different makes and models of cars. He and his invited friends are given a 4x4 grid, populated with randomly selected and ordered cars. They race to take pictures of the corresponding cars, and upload them to the database. A picture must be “approved” by the other players, to verify that it is, indeed, a picture of a Lamborghini, rather than one of a Ford. This is done by vote. When a player gets 4 approved pictures in a row, column, or diagonal, he is declared the winner, and all boards become available to all players for perusal.
