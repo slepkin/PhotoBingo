@@ -1,7 +1,4 @@
 # PhotoBingo
-Photo Bingo is a mix between apples to apples and Words with Friends.
-
-# DESCRIPTION
 
 Photo Bingo is a bit of a mix between Apples to Apples,
 and casual social games like Words with Friends. I envision it as a 
