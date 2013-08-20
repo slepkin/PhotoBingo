@@ -5,13 +5,11 @@
     <h3>Players:</h3>
     <ul>
     <% @game.users.each do |user| %>
-      <li class="button small-button">
       <% if @game.end %>
-        <%= link_to user.name.capitalize, board_url(@game.boards.find_by_user_id(user.id)) %>
+        <li class="button small-button"><%= link_to user.name.capitalize, board_url(@game.boards.find_by_user_id(user.id)) %></li>
       <% else %>
-        <%= user.name.capitalize %>
+        <li><%= user.name.capitalize %></li>
       <% end %>
-      </li>
     <% end %>
     </ul>
   </section>

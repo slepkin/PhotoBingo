@@ -1,7 +1,7 @@
 # PhotoBingo
 
 Photo Bingo is a bit of a mix between Apples to Apples,
-and casual social games like Words with Friends. I envision it as a 
+and casual social games like Words with Friends. I envision it as a
 mobile game, though it is obviously not currently implemented as one.
 A player selects (or makes) a theme, which contains a bunch of related
 phrases. For example, the “Cars” theme may contain many different makes
@@ -17,8 +17,9 @@ declared the winner, and all boards become available to all players for perusal.
 
 TODO:
 
+* [] Fix formatting of notices and alerts, on pages containing only floats
 * [] Fix styling on themes#index. Entire button must be clickable.
-* [] Player names should only be buttons if game is over (this is at games#show)
+* [x] Player names should only be buttons if game is over (this is at games#show)
 * [x] Make cell show page
 * [x] photos_controller new, create, show
 * [x] Make photo new page (or maybe cell#show)
@@ -37,7 +38,7 @@ TODO:
 * [x] add grid for Board template
 * [x] add indices for foreign keys
 * [x] Give error if try to submit photo with no image
- 
+
 * [x] break cells/show.html.erb into a bunch of partials
 * ~~[] link notifications to a board, instead of a subject AND a game~~
 

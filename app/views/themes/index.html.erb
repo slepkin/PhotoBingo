@@ -1,13 +1,15 @@
 <h1>My Themes</h1>
 
-<!-- Later, restrict themes to their owners -->
 <section class="themes">
   <ul class="group">
   <% current_user.themes.each do |theme| %>
-    <li class="left button small-button">
-      <%= link_to theme.name, edit_theme_url(theme) %>
-      <%= button_to "Delete", theme_url(theme), method: "delete", class: "left button small-button",
-        data: { confirm: "Are you sure you wish to discard this theme?\nThis is permanent!"}%>
+    <li>
+      <%= theme.name %>
+      <ul class="group">
+        <li><%= link_to "Edit", edit_theme_url(theme), class: "button small-button" %></li>
+        <li><%= button_to "Delete", theme_url(theme), method: "delete", class: "button small-button",
+          data: { confirm: "Are you sure you wish to discard this theme?\nThis is permanent!" } %></li>
+      </ul>
     </li>
   <% end %>
   </ul>
