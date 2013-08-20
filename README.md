@@ -17,27 +17,27 @@ declared the winner, and all boards become available to all players for perusal.
 
 TODO:
 
-[] Fix styling on themes#index. Entire button must be clickable.
-[] Player names should only be buttons if game is over (this is at games#show)
-[x] Make cell show page
-[x] photos_controller new, create, show
-[x] Make photo new page (or maybe cell#show)
-[x] Make photo show page (or maybe cell#show)
-[x] Get Paperclip working with Amazon
-[x] notifications!
-  [x] remember to add notification of quality "win", and make all boards available only if someone won
-[x] end game!
-  [x]Forbid lots of actions when game.end true (and hide relevant buttons)
-  [x] allow checking other players' boards (and show buttons)
-  [x] change notification "win"
-  [x] check diagonal wins
-[x] quit a game
-  [x] alert before quit
-  [x] ensure destruction of descendent objects
-[x] add grid for Board template
-[x] add indices for foreign keys
-[x] Give error if try to submit photo with no image
+* [] Fix styling on themes#index. Entire button must be clickable.
+* [] Player names should only be buttons if game is over (this is at games#show)
+* [x] Make cell show page
+* [x] photos_controller new, create, show
+* [x] Make photo new page (or maybe cell#show)
+* [x] Make photo show page (or maybe cell#show)
+* [x] Get Paperclip working with Amazon
+* [x] notifications!
+  * [x] remember to add notification of quality "win", and make all boards available only if someone won
+* [x] end game!
+  * [x]Forbid lots of actions when game.end true (and hide relevant buttons)
+  * [x] allow checking other players' boards (and show buttons)
+  * [x] change notification "win"
+  * [x] check diagonal wins
+* [x] quit a game
+  * [x] alert before quit
+  * [x] ensure destruction of descendent objects
+* [x] add grid for Board template
+* [x] add indices for foreign keys
+* [x] Give error if try to submit photo with no image
  
-[x] break cells/show.html.erb into a bunch of partials
-~~[] link notifications to a board, instead of a subject AND a game~~
+* [x] break cells/show.html.erb into a bunch of partials
+* ~~[] link notifications to a board, instead of a subject AND a game~~
 
