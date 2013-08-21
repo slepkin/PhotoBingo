@@ -17,7 +17,7 @@ declared the winner, and all boards become available to all players for perusal.
 
 TODO:
 
-
+* [] Validate uniqueness of photo/cell pair
 * [] Initiate Guest account with a game
 * [] Fix button to reset password (either remove it, or set up SendGrip)
 * [] Fix formatting of notices and alerts, on pages containing only floats

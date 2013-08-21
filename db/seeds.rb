@@ -15,7 +15,7 @@ User.create({:name => "bill", :email => "blah@blah.net",
 User.create({:name => "guest", :email => "guest@guest.com",
   :password => "password", :password_confirmation => "password"})
 
-Theme.create({:name => "Cats", :user_id => 1,
+Theme.create({:name => "Cats", :user_id => 3,
   :phrases_attributes =>
     {
       "0"=>{:body=>"happy cat"},
@@ -37,3 +37,5 @@ Theme.create({:name => "Cats", :user_id => 1,
     }
   }
 )
+
+Game.create(theme_id: 1, user_ids: [1, 3])
