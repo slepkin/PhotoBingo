@@ -17,6 +17,9 @@ declared the winner, and all boards become available to all players for perusal.
 
 TODO:
 
+
+* [] Initiate Guest account with a game
+* [] Fix button to reset password (either remove it, or set up SendGrip)
 * [] Fix formatting of notices and alerts, on pages containing only floats
 * [] Fix styling on themes#index. Entire button must be clickable.
 * [x] Player names should only be buttons if game is over (this is at games#show)
