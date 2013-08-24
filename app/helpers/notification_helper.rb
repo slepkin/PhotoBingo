@@ -25,8 +25,15 @@ module NotificationHelper
     when "win"
       notice = "#{subject} won the game!"
     end
-
-    "<p class='group'><notice>#{notice}</notice><time>#{notification.created_at}</time></p>"
+    <<HTML
+      <ul class="group">
+        <li><a href="#{cell_path(notification.photo.cell)}">
+          #{image_tag notification.photo.img.url(:thumbnail)}
+         </a></li>
+        <li><notice>#{notice}</notice></li>
+        <li><time>#{notification.created_at}</time></li>
+      </ul>
+HTML
   end
 
   def pending_photo_notice(notification, show_url)

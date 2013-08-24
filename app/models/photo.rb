@@ -12,7 +12,8 @@ class Photo < ActiveRecord::Base
 
   has_attached_file :img, :styles => {
     :big => "600x600",
-    :small => "#{Cell::WIDTH}x#{Cell::WIDTH}"
+    :small => "#{Cell::WIDTH}x#{Cell::WIDTH}",
+    :thumbnail => "50x50#"
   }
 
   validates_presence_of :img, :cell

@@ -14,12 +14,12 @@
 
 html, body, header, footer, section, article, div,
 strong, a, img, p, h1, h2, h3, time, ul, li, small, form, input
-button, nav input[type="submit"] {
+button, button, nav input[type="submit"] {
   border: 0;
   padding: 0;
   margin: 0;
   text-decoration: none;
-  color: black;
+  color: rgb(230,54,6);
   box-shadow: 0;
 }
 
@@ -31,7 +31,7 @@ button, nav input[type="submit"] {
 
 
 html {
-  background-color: rgb(171, 171, 171);
+  background-color: rgb(253,156,19);
   font-family: 'helvetica', sans-serif;
 }
 
@@ -45,7 +45,7 @@ html {
 }
 
 main {
-  background-color: rgb(190, 200, 200);
+  background-color: rgb(248,176,24);
   width: 900px;
   margin: 20px auto;
   padding: 10px;
@@ -59,7 +59,7 @@ nav > ul {
   display: block;
   width: 920px;
   margin: auto;
-  background-color: rgb(160, 200, 200);
+  background-color: rgb(251,247,6);
 }
 
 nav > ul > li {
@@ -80,17 +80,18 @@ nav input, nav button, nav .button {
 }
 
 .button {
-  background-color: rgb(160, 200, 200);
+  background-color: rgb(251,247,6);
   padding: 10px;
   border: 1px solid black;
   box-shadow: 1px 1px 1px black;
   border-radius: 5px;
   font-size: 12pt;
+  display: inline-block;
 }
 
 .button:hover {
   transition: all 0.5s;
-  color: rgb(70, 130, 250);
+  color: rgb(253,156,19);
   background-color: white;
   cursor: pointer;
 }
@@ -120,7 +121,7 @@ h1, h2 {
   padding: 50px 0 50px 0;
   text-align: center;
   margin: auto;
-  color: rgb(70, 130, 250);
+  color: rgb(250,54,6);
 }
 
 .buttons {
@@ -185,7 +186,13 @@ ul {
 }
 
 .notifications {
-  width: 500px;
+  width: 650px;
+}
+
+.notifications img {
+  float: left;
+  border: 1px solid black;
+  margin: 3px;
 }
 
 notice {
