@@ -42,7 +42,7 @@ module NotificationHelper
       <ul class="group">
         <li>#{thumbnail}</li>
         <li><notice>#{notice}</notice></li>
-        <li><time>#{notification.created_at}</time></li>
+        <li><time>#{notification.updated_at}</time></li>
       </ul>
 HTML
   end
