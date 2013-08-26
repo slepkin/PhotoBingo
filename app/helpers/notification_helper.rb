@@ -55,7 +55,7 @@ HTML
     if current_user == notification.subject
       link_to "Your photo has been submitted for approval.", show_url
     elsif my_votes.blank?
-      link_to "You have a pending photo to vote on.", show_url, class: "pending"
+      link_to "You have a pending photo to vote on.", show_url, class: "alert"
     elsif my_votes.first.approve
       link_to "You approved a photo.", show_url
     else

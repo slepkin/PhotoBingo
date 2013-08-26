@@ -18,7 +18,7 @@ declared the winner, and all boards become available to all players for perusal.
 TODO:
 
 * [x] Check notification timestamp bug
-* [] Fix styling of buttons after re-coloring
+* [x] Fix styling of buttons after re-coloring
 * [x] Set up New Relic to ping
 * [] Validate uniqueness of photo/cell pair
 * [x] Initiate Guest account with a game
