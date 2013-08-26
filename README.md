@@ -17,6 +17,7 @@ declared the winner, and all boards become available to all players for perusal.
 
 TODO:
 
+* [] Add legend for interpreting color-coded cells
 * [x] Check notification timestamp bug
 * [x] Fix styling of buttons after re-coloring
 * [x] Set up New Relic to ping
