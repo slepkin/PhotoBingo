@@ -8,10 +8,23 @@ module NotificationHelper
     notification.subject == current_user ? "You have" : "#{html_escape(notification.subject.name.capitalize)} has"
   end
 
+  def thumbnail(photo)
+    if photo
+      <<-HTML
+      <a href="#{cell_path(photo.cell)}">
+        #{image_tag photo.img.url(:thumbnail)}
+      </a>
+      HTML
+    else
+      ""
+    end
+  end
+
   def to_html(notification)
     show_url = cell_url(notification.photo.cell) if notification.photo
     possessive = possessive_to_s(notification)
     subject = subject_to_s(notification)
+    thumbnail = thumbnail(notification.photo)
 
     case notification.quality
     when "quit"
@@ -25,11 +38,9 @@ module NotificationHelper
     when "win"
       notice = "#{subject} won the game!"
     end
-    <<HTML
+    <<-HTML
       <ul class="group">
-        <li><a href="#{cell_path(notification.photo.cell)}">
-          #{image_tag notification.photo.img.url(:thumbnail)}
-         </a></li>
+        <li>#{thumbnail}</li>
         <li><notice>#{notice}</notice></li>
         <li><time>#{notification.created_at}</time></li>
       </ul>

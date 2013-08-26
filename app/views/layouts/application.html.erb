@@ -12,8 +12,8 @@
 <body>
   <nav>
     <ul class="group">
-      <li class="big-nav"><%= link_to "Games", games_url, method: "get", class: "button"%></li>
-      <li class="big-nav"><%= link_to "Themes", themes_url, method: "get", class: "button" %></li>
+      <li class="big-nav"><%= link_to "Games", games_url, class: "button"%></li>
+      <li class="big-nav"><%= link_to "Themes", themes_url, class: "button" %></li>
       <li class="small-nav">
         <form action="<%= destroy_user_session_url %>" method="post">
           <input type="hidden" name="_method" value="delete">
@@ -24,10 +24,10 @@
   </nav>
 
   <main class="group">
-    <%= yield %>
-    <br>
     <p class="alert"><%= flash[:alert] %></p>
     <p class="notice"><%= flash[:notice] %></p>
+    <br>
+    <%= yield %>
   </main>
 
 </body>

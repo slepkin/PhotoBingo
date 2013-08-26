@@ -36,12 +36,13 @@ html {
 }
 
 .alert, alert {
-  color: red;
+  color: blue;
 }
 
 .notice, .alert, alert {
-  text-align: right;
-  font-size: 12px;
+  text-align: left;
+  font-variant: small-caps;
+  font-size: 18px;
 }
 
 main {

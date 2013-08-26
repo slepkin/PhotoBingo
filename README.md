@@ -17,7 +17,9 @@ declared the winner, and all boards become available to all players for perusal.
 
 TODO:
 
-* [] Set up Pingdom
+* [] Check notification timestamp bug
+* [] Fix styling of buttons after re-coloring
+* [x] Set up New Relic to ping
 * [] Validate uniqueness of photo/cell pair
 * [x] Initiate Guest account with a game
   * Done, but still need to manually upload photo for guest to approve :(

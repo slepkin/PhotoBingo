@@ -9,7 +9,7 @@
   <% if @photo_exists %>
     <h3>Status: <%= @photo.status.capitalize %></h3>
     <% if @is_owner %>
-      <%= link_to "Discard Photo", photo_url(@photo), method: :delete, class: "button",
+      <%= button_to "Discard Photo", photo_url(@photo), method: :delete, class: "button",
          data: { confirm: "Are you sure you wish to discard this photo?\nYou will lose any votes given for it!"}%><br>
     <% elsif @photo.pending_votes?(current_user) %>
       <%= render partial: "votes", locals: { photo: @photo } %>
